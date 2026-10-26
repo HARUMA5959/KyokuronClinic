@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>極論クリニック｜お悩み相談受付</title>
+<style id="app-css">
+:root{color-scheme:light;--bg:#f4faf9;--card:#fff;--tx:#1f3a3d;--mute:#5d7a7d;--pri:#0e8f8a;--pri2:#0a6e6a;--line:#d5e7e5;--acc:#e8f6f5;--warn:#fff6e0;--warnb:#f0d58a;--rx:#fffdf3;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:"Hiragino Sans","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;line-height:1.8}
+a{color:var(--pri2)}
+.top{background:var(--pri2);color:#fff;font-size:12px;padding:6px 16px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+header{background:var(--card);border-bottom:3px solid var(--pri);padding:14px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:22px;color:var(--pri2)}
+.logo i{display:inline-grid;place-items:center;width:38px;height:38px;border-radius:10px;background:var(--pri);color:#fff;font-style:normal;font-size:26px;line-height:1}
+.logo small{display:block;font-size:11px;font-weight:400;color:var(--mute);letter-spacing:.08em}
+.tel{text-align:right;font-size:12px;color:var(--mute)}.tel b{display:block;font-size:20px;color:var(--pri2)}
+nav{background:var(--card);border-bottom:1px solid var(--line);display:flex;overflow-x:auto;white-space:nowrap}
+nav a{padding:12px 18px;text-decoration:none;color:var(--tx);font-size:14px;font-weight:600;border-right:1px solid var(--line)}
+nav a:hover{background:var(--acc)}
+.hero{background:linear-gradient(135deg,var(--acc),var(--bg));padding:40px 16px;text-align:center;border-bottom:1px solid var(--line)}
+.hero h1{margin:0 0 8px;font-size:clamp(22px,5vw,34px);line-height:1.4}
+.hero p{margin:0 auto 20px;max-width:560px;color:var(--mute)}
+.btn{display:inline-block;background:var(--pri);color:#fff;border:0;border-radius:999px;padding:14px 32px;font-size:16px;font-weight:700;cursor:pointer;text-decoration:none;font-family:inherit}
+.btn:hover{background:var(--pri2)}.btn:disabled{opacity:.6;cursor:wait}
+main{max-width:860px;margin:0 auto;padding:24px 16px 48px}
+h2{font-size:20px;border-left:6px solid var(--pri);padding-left:10px;margin:36px 0 14px}
+.news{background:var(--card);border:1px solid var(--line);border-radius:8px}
+.news div{display:flex;gap:12px;padding:10px 14px;border-bottom:1px solid var(--line);font-size:14px}
+.news div:last-child{border:0}.news time{color:var(--mute);white-space:nowrap}
+.tag{background:var(--pri);color:#fff;border-radius:4px;font-size:11px;padding:0 8px;height:20px;line-height:20px;align-self:center;white-space:nowrap}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px}
+.dep{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px 8px;text-align:center;font-size:14px;font-weight:600}
+.dep span{display:block;font-size:26px}
+.table{width:100%;border-collapse:collapse;background:var(--card);font-size:14px;text-align:center}
+.table th,.table td{border:1px solid var(--line);padding:8px 4px}.table th{background:var(--acc)}
+.table-wrap{overflow-x:auto}
+form{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px}
+label{display:block;font-weight:700;font-size:14px;margin:14px 0 4px}
+label em{font-style:normal;background:#d9534f;color:#fff;font-size:11px;padding:1px 6px;border-radius:3px;margin-left:6px}
+input,select,textarea{width:100%;font:inherit;font-size:16px;padding:10px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--tx)}
+textarea{min-height:130px;resize:vertical}
+.note{font-size:12px;color:var(--mute)}
+.rx{display:none;margin-top:20px;background:var(--rx);border:2px solid var(--pri);border-radius:10px;padding:20px}
+.rx.show{display:block}
+.rx h3{margin:0 0 12px;color:var(--pri2);font-size:18px;border-bottom:1px dashed var(--pri);padding-bottom:8px}
+.rx dl{margin:0;display:grid;grid-template-columns:7em 1fr;gap:8px 10px;font-size:14px}
+.rx dt{color:var(--mute);font-weight:700}.rx dd{margin:0}
+.ans{font-size:clamp(20px,4.6vw,28px);font-weight:800;color:var(--pri2);line-height:1.5}
+.warn{background:var(--warn);border:1px solid var(--warnb);border-radius:8px;padding:14px;margin-top:16px;font-size:14px}
+.care{background:var(--warn);border:2px solid var(--warnb);border-radius:10px;padding:18px;margin-top:20px;display:none}
+.care.show{display:block}.care h3{margin:0 0 8px}
+footer{background:var(--pri2);color:#fff;text-align:center;font-size:12px;padding:20px 16px}
+.acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}.btn2{background:var(--card);color:var(--pri2);border:2px solid var(--pri);padding:10px 20px;font-size:14px}.btn2:hover{background:var(--acc)}.btn3{background:#111;color:#fff;padding:10px 20px;font-size:14px}.btn3:hover{background:#333}.credit{margin-top:6px;font-size:13px}.credit a{color:#fff;font-weight:700}
+.cv{width:100%;height:auto;border-radius:8px;border:1px solid var(--line);margin-top:14px;display:block}.chk{font-weight:400;display:flex;align-items:center;gap:8px;margin:12px 0 0}.chk input{width:auto}.cntbox{margin:18px 0 0;font-size:14px;color:var(--mute)}.cntbox b{font-size:24px;color:var(--pri2)}.rx.secret{--tx:#3a2f06;--mute:#7a6a2a;--pri2:#8a6a00;--pri:#c9a227;border-color:#c9a227;background:linear-gradient(135deg,#fff8dc,#fff0b8);color:#3a2f06}
+html{-webkit-text-size-adjust:100%}button,a.btn{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+@media (max-width:600px){.top{font-size:11px;padding:6px 12px}header{padding:12px;flex-direction:column;align-items:flex-start;gap:6px}.tel{text-align:left}.tel b{font-size:18px}.logo{font-size:20px}nav a{padding:12px 14px;font-size:13px}.hero{padding:28px 14px}main{padding:16px 12px 40px}h2{font-size:18px;margin-top:28px}.news div{flex-wrap:wrap;gap:4px 8px}form{padding:14px}#go{width:100%}.rx{padding:14px}.rx dl{grid-template-columns:5em 1fr;font-size:13px}.acts{flex-direction:column}.acts .btn{width:100%;text-align:center}.grid{grid-template-columns:repeat(3,1fr)}.dep{font-size:12px;padding:10px 4px}.dep span{font-size:22px}.table{font-size:12px}footer{padding:18px 12px}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin-bottom:12px}.card h3,.card h4{margin:0 0 8px}.card p{margin:0 0 8px}
+.sub{font-size:17px;margin:28px 0 12px;color:var(--pri2)}.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}.cols .card{margin:0}.no{display:inline-block;background:var(--pri);color:#fff;border-radius:6px;padding:0 10px;font-size:13px;margin-bottom:6px}
+.ul{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 18px 14px 36px;margin:0}.ul li{margin:4px 0}
+.info th{width:7em;text-align:left;padding-left:12px}.info td{text-align:left;padding-left:12px}
+.docs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}.doc{margin:0;text-align:center}.doc h4{font-size:18px}.doc small{display:block;font-weight:400;color:var(--mute);font-size:12px}.av{width:64px;height:64px;border-radius:50%;background:var(--acc);display:grid;place-items:center;font-size:34px;margin:0 auto 8px}.sp{font-weight:700;color:var(--pri2)}.doc ul{text-align:left;font-size:13px;color:var(--mute);padding-left:20px;margin:0 0 10px}.doc q{display:block;font-weight:700;border-top:1px dashed var(--line);padding-top:8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}.chips span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:14px}.chips .qq{border-style:dashed;color:var(--mute)}
+nav a.on{background:var(--acc);color:var(--pri2)}
+.menu{display:none;position:absolute;right:12px;top:10px;width:44px;height:44px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--pri2);font-size:24px;line-height:1;cursor:pointer}header{position:relative}
+.faq{background:var(--card);border:1px solid var(--line);border-radius:8px;margin-bottom:8px}.faq summary{cursor:pointer;padding:14px 16px;font-weight:700;list-style:none;display:flex;gap:10px;align-items:center}.faq summary::-webkit-details-marker{display:none}.faq summary::before{content:"Q";background:var(--pri);color:#fff;border-radius:50%;width:24px;height:24px;display:grid;place-items:center;font-size:13px;flex:none}.faq summary::after{content:"＋";margin-left:auto;color:var(--pri2)}.faq[open] summary::after{content:"－"}.faq p{margin:0;padding:0 16px 14px 50px;font-size:14px}
+@media (max-width:720px){.menu{display:block}.logo{padding-right:52px}nav{display:none;flex-direction:column;overflow:visible}nav.open{display:flex}nav a{border-right:0;border-bottom:1px solid var(--line);padding:14px 16px}}
+.vgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}.vgrid .card{margin:0}.vgrid small{color:var(--mute)}.stars{color:#e8a200;letter-spacing:2px;margin-bottom:6px}
+#voice{display:flex;align-items:center;gap:12px}.vt{margin-left:auto;font:inherit;font-size:13px;font-weight:600;padding:6px 14px;border-radius:999px;border:1px solid var(--pri);background:var(--card);color:var(--pri2);cursor:pointer}.vt:hover{background:var(--acc)}
+</style>
+<script type="application/json" id="cfg">{"rare":10,"secret":2,"showCount":true,"extra":[],"ban":[]}</script>
+</head>
+<body>
+<div id="app">
+<div class="top"><span>【受付中】オンライン初診歓迎・保険証不要</span><span>※当院は架空の医療機関です ／ 制作 <a href="https://x.com/royal404ex" target="_blank" rel="noopener" style="color:#fff">@royal404ex</a></span></div>
+<header>
+  <button type="button" class="menu" id="menu" aria-label="メニューを開く" aria-expanded="false" aria-controls="gnav">☰</button>
+  <div class="logo"><i>＋</i><div>極論クリニック<small>GOKURON CLINIC</small></div></div>
+  <div class="tel">お悩み相談ダイヤル<b>0120-ｷﾖｸ-ﾛﾝ</b>受付 24時間（回答は一瞬）</div>
+</header>
+<nav id="gnav"><a href="#top">ホーム</a><a href="#about">クリニック紹介</a><a href="#doctors">医師・実績</a><a href="#faq">よくあるご質問</a><a href="#news">お知らせ</a><a href="#dept">診療科目</a><a href="#voice">患者さんの声</a><a href="#hours">診療時間</a><a href="#consult">オンライン相談</a></nav>
+<section class="hero" id="top">
+  <h1>あなたの悩みに、<br>最短・最速の答えを。</h1>
+  <p>迷う時間は、もう終わり。当院では、あらゆるお悩みに対して「極論」をお届けします。</p>
+  <a class="btn" href="#consult">オンライン相談を受付する</a>
+</section>
+<main>
+  <div id="v-home">
+  <h2 id="news">お知らせ</h2>
+  <div class="news">
+    <div><time>2026.10.26</time><span class="tag">新設</span><span>よくあるご質問ページを公開しました。</span></div>
+    <div><time>2026.10.26</time><span class="tag">新設</span><span>スマホ用のメニュー（☰）を追加しました。</span></div>
+    <div><time>2026.10.25</time><span class="tag">新設</span><span>医師紹介・実績ページを公開しました。</span></div>
+    <div><time>2026.10.25</time><span class="tag">新設</span><span>クリニック紹介ページを公開しました。</span></div>
+  </div>
+  <p style="text-align:right;margin:8px 0 0"><a href="#info">お知らせ一覧を見る ›</a></p>
+
+  <h2 id="dept">診療科目</h2>
+  <div class="grid">
+    <div class="dep"><span>💴</span>お金科</div>
+    <div class="dep"><span>💼</span>仕事科</div>
+    <div class="dep"><span>💘</span>恋愛科</div>
+    <div class="dep"><span>👥</span>人間関係科</div>
+    <div class="dep"><span>🍚</span>健康・食事科</div>
+    <div class="dep"><span>🌀</span>その他</div>
+  </div>
+
+  <h2 id="hours">診療時間</h2>
+  <div class="table-wrap"><table class="table">
+    <tr><th>時間</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th>土</th><th>日</th></tr>
+    <tr><td>0:00〜24:00</td><td>●</td><td>●</td><td>●</td><td>●</td><td>●</td><td>●</td><td>●</td></tr>
+  </table></div>
+  <p class="note">● 診察＝極論。休診日はありません（院長は寝ません）。</p>
+
+  <h2 id="consult">オンライン相談</h2>
+  <form id="f">
+    <label for="dep">診療科目<em>必須</em></label>
+    <select id="dep">
+      <option value="auto">おまかせ（症状から判断）</option>
+      <option value="money">お金科</option><option value="work">仕事科</option><option value="love">恋愛科</option>
+      <option value="human">人間関係科</option><option value="health">健康・食事科</option><option value="other">その他</option>
+    </select>
+    <label for="nm">お名前（ニックネーム可）</label>
+    <input id="nm" maxlength="20" placeholder="例：山田 太郎" autocomplete="off">
+    <label for="q">お悩みの内容<em>必須</em></label>
+    <textarea id="q" maxlength="400" placeholder="例：借金が100万円あるのですが、どうすればいいですか？"></textarea>
+    <p class="note">入力内容は送信・保存されません。</p>
+    <button class="btn" id="go" type="submit">診察を受ける</button>
+  </form>
+
+  <div class="care" id="care">
+    <h3>まず、お話を聞かせてください</h3>
+    <p>お悩みの内容が深刻そうなので、ここでは極論で答えません。話してくださってありがとうございます。</p>
+    <p>ひとりで抱えず、今すぐ話せる窓口に連絡してください。<br>
+    ・よりそいホットライン：0120-279-338（24時間・無料）<br>
+    ・いのちの電話：0570-783-556<br>
+    ・DV相談+：0120-279-889／児童虐待は 189<br>
+        身に危険が迫っているときは 119 / 110 へ。</p>
+  </div>
+
+  <div class="rx" id="rx" aria-live="polite">
+    <h3>診察結果・処方箋</h3>
+    <dl>
+      <dt>患者名</dt><dd id="r-name"></dd>
+      <dt>担当医</dt><dd id="r-doc"></dd>
+      <dt>極論度</dt><dd id="r-deg"></dd>
+      <dt>診断名</dt><dd id="r-dx"></dd>
+      <dt>処方</dt><dd class="ans" id="r-ans"></dd>
+      <dt>用法・用量</dt><dd id="r-use"></dd>
+      <dt>副作用</dt><dd id="r-side"></dd>
+    </dl>
+    <p class="note" style="margin-top:14px">次回診察：気が済むまで何度でも</p>
+    <canvas id="cv" class="cv" width="1200" height="675" aria-label="診察結果の画像"></canvas>
+    <div class="acts"><button type="button" class="btn btn2" id="again">別の医師にも診てもらう（セカンドオピニオン）</button><button type="button" class="btn btn3" id="share">この画像でXにシェア</button></div>
+    <label class="chk"><input type="checkbox" id="withq"> 相談内容も画像に入れる</label>
+    <p class="note" id="smsg"></p>
+  </div>
+
+  </div>
+
+  <div id="v-about" hidden>
+    <h2>クリニック紹介</h2>
+    <div class="card"><h3>ごあいさつ</h3>
+      <p>当院は「迷う時間は、もう終わり。」を理念に、あらゆるお悩みへ最短で結論をお届けする、架空のオンライン診療所です。中間案・折衷案・様子見は、一切取り扱っておりません。</p>
+      <p style="text-align:right;margin:0">院長　極 論太郎</p></div>
+    <h3 class="sub">3つの診療方針</h3>
+    <div class="cols">
+      <div class="card"><b class="no">01</b><h4>結論ファースト</h4><p>前置きなし。診察は一瞬、結論は一言です。</p></div>
+      <div class="card"><b class="no">02</b><h4>迷いを持ち越さない</h4><p>「やる」か「やめる」か。どちらかです。</p></div>
+      <div class="card"><b class="no">03</b><h4>責任は取りません</h4><p>決めるのも、実行するのも、あなたです。</p></div>
+    </div>
+    <h3 class="sub">院内の特長</h3>
+    <ul class="ul">
+      <li>24時間365日、待ち時間ゼロ（「診察中…」の約1秒を除く）</li>
+      <li>保険証不要・予約不要。相談内容は保存しません</li>
+      <li>セカンドオピニオン無制限。別の医師に何度でも診てもらえます</li>
+      <li>不定期で、特別な医師が出勤することがあります</li>
+    </ul>
+    <h3 class="sub">施設概要</h3>
+    <div class="table-wrap"><table class="table info">
+      <tr><th>名称</th><td>極論クリニック（架空）</td></tr>
+      <tr><th>院長</th><td>極 論太郎</td></tr>
+      <tr><th>診療科目</th><td>お金科／仕事科／恋愛科／人間関係科／健康・食事科／その他</td></tr>
+      <tr><th>診療時間</th><td>24時間365日（院長は寝ません）</td></tr>
+      <tr><th>受付</th><td>オンラインのみ</td></tr>
+      <tr><th>所在地</th><td>インターネットのどこか</td></tr>
+      <tr><th>制作</th><td><a href="https://x.com/royal404ex" target="_blank" rel="noopener">@royal404ex</a></td></tr>
+    </table></div>
+    <h3 class="sub">沿革</h3>
+    <div class="news">
+      <div><time>2026.04</time><span>極論クリニック開院（予定は未定でした）</span></div>
+      <div><time>2026.07</time><span>セカンドオピニオン制度を開始</span></div>
+      <div><time>2026.09</time><span>レア医師の不定期出勤が始まる</span></div>
+      <div><time>2026.10</time><span>診察結果の画像シェアに対応</span></div>
+    </div>
+    <p style="text-align:center;margin-top:24px"><a class="btn" href="#consult">オンライン相談を受付する</a></p>
+  </div>
+
+  <div id="v-doctors" hidden>
+    <h2>医師紹介・実績</h2>
+    <div class="docs">
+      <div class="card doc"><div class="av">👨‍⚕️</div><h4>極 論太郎<small>院長</small></h4><p class="sp">専門：決断全般</p><ul><li>極論歴 24年</li><li>判断速度 0.3秒</li><li>「迷った」と言った患者 0人（自己申告）</li></ul><q>迷うな。以上。</q></div>
+      <div class="card doc"><div class="av">👩‍⚕️</div><h4>断言 花子<small>副院長</small></h4><p class="sp">専門：恋愛・人間関係</p><ul><li>告白成功率 50%（する or しない）</li><li>縁切り実績 多数</li><li>「たぶん」を言った回数 0回</li></ul><q>好きなら今言いなさい。</q></div>
+      <div class="card doc"><div class="av">🧑‍⚕️</div><h4>即答 次郎<small>研修医</small></h4><p class="sp">専門：はい／いいえ</p><ul><li>平均回答時間 1秒</li><li>「考えさせてください」の使用歴 なし</li><li>研修中のはずが、すでに断定的</li></ul><q>はい！いいえ！</q></div>
+      <div class="card doc"><div class="av">🩺</div><h4>一刀<small>看護師長</small></h4><p class="sp">専門：退職・断捨離</p><ul><li>退職届の書き出し支援 数知れず</li><li>処分した物 ゴミ収集車3台分（自称）</li><li>院内の整理整頓 完璧</li></ul><q>全部捨てましょう。</q></div>
+      <div class="card doc"><div class="av">🧑‍⚕️</div><h4>白黒 つけ子<small>非常勤</small></h4><p class="sp">専門：二択の悩み</p><ul><li>グレーゾーン撲滅活動 継続中</li><li>コイン投げ的中率 50%</li><li>「どっちも」と言ったことがない</li></ul><q>右です。</q></div>
+      <div class="card doc"><div class="av">🚑</div><h4>結論 急<small>救急担当</small></h4><p class="sp">専門：今すぐ決めたい悩み</p><ul><li>到着までの時間 0秒</li><li>「明日にしましょう」の使用歴 なし</li><li>夜間・休日も出勤</li></ul><q>今すぐ。</q></div>
+    </div>
+    <p class="note">※実績はすべて架空の自己申告です。</p>
+    <h3 class="sub">特別診察医（不定期出勤）</h3>
+    <p>診察を受けると、ごくまれに特別な医師が担当することがあります。出会えたらラッキーです。</p>
+    <div class="chips"><span>🐱 にゃんこ先生</span><span>🚶 通りすがりの人</span><span>👦 8歳の自称院長</span><span>🔮 占い師ドクター</span><span>🤖 ロボ医師 KYOKU-3000</span><span>🧓 関西のおっちゃん</span><span>👹 ラスボス</span><span>🥷 武士の先生</span><span class="qq">❓ ？？？</span></div>
+    <p class="note">診察室の奥に、誰かいるようです…</p>
+    <p style="text-align:center;margin-top:24px"><a class="btn" href="#consult">診察を受ける</a></p>
+  </div>
+
+    <div id="v-faq" hidden>
+    <h2>よくあるご質問</h2>
+    <p class="note">質問をタップすると、答えが開きます。</p>
+    <details class="faq"><summary>本当に相談してもいいのですか？</summary><p>当院はジョークのサイトです。極論を楽しむ場所としてお使いください。実際の判断は、専門家にご相談ください。</p></details>
+    <details class="faq"><summary>実在の医療機関ですか？</summary><p>いいえ、架空です。診断や処方に医学的な意味はありません。</p></details>
+    <details class="faq"><summary>回答はAIが考えているのですか？</summary><p>いいえ。あらかじめ用意した極論の中から、お悩みの言葉に合うものをランダムに選んでいます。</p></details>
+    <details class="faq"><summary>同じ相談でも、答えが変わるのはなぜですか？</summary><p>選び方にランダムな要素があるためです。結果の下の「セカンドオピニオン」で、別の医師の答えも聞けます。</p></details>
+    <details class="faq"><summary>相談内容は保存されますか？</summary><p>保存されません。入力した内容は、この端末の外には送られません。</p></details>
+    <details class="faq"><summary>診察料はかかりますか？</summary><p>無料です。保険証も予約も必要ありません。</p></details>
+    <details class="faq"><summary>レア医師やシークレットとは何ですか？</summary><p>診察のたびに、ごくまれに特別な医師が担当します。誰が出るかは、出会ってからのお楽しみです。</p></details>
+    <details class="faq"><summary>診察結果を画像でシェアできますか？</summary><p>できます。結果の下の「この画像でXにシェア」を押してください。相談内容を画像に入れるかどうかは、チェックで選べます。</p></details>
+        <details class="faq"><summary>とてもつらい悩みを書いたらどうなりますか？</summary><p>深刻なお悩みには、極論ではお答えせず、相談窓口をご案内します。よりそいホットライン（0120-279-338）は24時間無料です。</p></details>
+    <details class="faq"><summary>ご意見・ご要望はどこへ送ればいいですか？</summary><p>制作者の <a href="https://x.com/royal404ex" target="_blank" rel="noopener">@royal404ex</a> までお寄せください。</p></details>
+    <p style="text-align:center;margin-top:24px"><a class="btn" href="#consult">オンライン相談を受付する</a></p>
+  </div>
+
+  <div id="v-info" hidden>
+    <h2>お知らせ一覧</h2>
+    <div class="news">
+    <div><time>2026.10.26</time><span class="tag">新設</span><span>よくあるご質問ページを公開しました。</span></div>
+    <div><time>2026.10.26</time><span class="tag">新設</span><span>スマホ用のメニュー（☰）を追加しました。</span></div>
+    <div><time>2026.10.25</time><span class="tag">新設</span><span>医師紹介・実績ページを公開しました。</span></div>
+    <div><time>2026.10.25</time><span class="tag">新設</span><span>クリニック紹介ページを公開しました。</span></div>
+    <div><time>2026.10.24</time><span class="tag">新機能</span><span>診察結果を画像にして、Xでシェアできるようになりました。</span></div>
+    <div><time>2026.10.23</time><span class="tag">お知らせ</span><span>ごくまれに、特別な医師が出勤することがあります。</span></div>
+        <div><time>2026.10.20</time><span class="tag">重要</span><span>回答の「中間案」「折衷案」の取り扱いを全面的に終了しました。</span></div>
+    <div><time>2026.10.15</time><span class="tag">新設</span><span>「とりあえず寝る科」を新設しました。</span></div>
+    <div><time>2026.10.01</time><span class="tag">お願い</span><span>「でも…」「だって…」でのご相談はご遠慮ください。</span></div>
+    </div>
+    <p style="text-align:center;margin-top:24px"><a class="btn" href="#top">ホームに戻る</a></p>
+  </div>
+
+  <div id="v-voice" hidden>
+    <h2>患者さんの声</h2>
+    <div class="vgrid">
+    <div class="card"><div class="stars">★★★★★</div><p>借金の相談をしたら、頑張って働いて返しましょうと言われて、ぐうの音も出ませんでした。</p><small>30代・会社員</small></div>
+    <div class="card"><div class="stars">★★★★☆</div><p>恋愛科で「今すぐ告白」と言われました。翌日、振られました。でもスッキリです。</p><small>20代・学生</small></div>
+    <div class="card"><div class="stars">★★★★★</div><p>猫の先生が出ました。にゃー、の一言で元気になりました。</p><small>40代・自営業</small></div>
+    <div class="card"><div class="stars">★★★★☆</div><p>セカンドオピニオンで答えが真逆になって、笑ってしまいました。</p><small>30代・公務員</small></div>
+    <div class="card"><div class="stars">★★★★★</div><p>夜中の3時でも診てもらえて助かりました。待ち時間も1秒でした。</p><small>20代・フリーランス</small></div>
+    <div class="card"><div class="stars">★★★☆☆</div><p>不思議な先生が出てきて、しばらく考え込んでいます。</p><small>50代・会社員</small></div>
+  </div>
+    <p class="note">※架空の声です。個人の感想で、効果を保証するものではありません。</p>
+    <p style="text-align:center;margin-top:24px"><a class="btn" href="#consult">オンライン相談を受付する</a></p>
+  </div>
+
+  <div class="warn"><b>ご注意</b>：当サイトの回答は、極端さを楽しむためのジョークです。医療・法律・金銭に関する実際の判断は、専門家にご相談ください。</div>
+</main>
+<footer>© 2026 極論クリニック（架空）／ 院長：極 論太郎　※実在の医療機関ではありません<div class="credit">制作：<a href="https://x.com/royal404ex" target="_blank" rel="noopener">@royal404ex</a></div></footer>
+
+</div>
+<script id="app-js">
+(function(){
+var CFG=(function(){var d={rare:10,secret:2,showCount:true,extra:[],ban:[]},c={};try{c=JSON.parse(document.getElementById("cfg").textContent)||{}}catch(e){}for(var k in d){if(c[k]===undefined)c[k]=d[k]}return c})();
+var C=[
+[["金欠症候群","財布スカスカ症","お札蒸発症","残高ゼロ病"],"借金|ローン|返済|負債|リボ|金欠|お金|貧乏|給料|貯金|家賃|税金|奨学金|破産|金がない|節約|年収|収入",
+["頑張って働いて返しましょう。","使わなければ減りません。","収入を2倍にして、支出を半分にしてください。","食費は水でいけます。","全部売りましょう。まず自分の持ち物から。","働け。以上。","副業を3つ始めてください。","借りた金は返す。それだけです。","破産しましょう。人生はやり直せます。","宝くじを買う前に働いてください。","今日から一円も使わないでください。","財布を家に置いて外出しましょう。","月給の9割を貯金してください。","家賃の安い所に住みましょう。山です。","借りた相手に会いに行きましょう。"]],
+[["ギャンブル依存気味症","課金の沼症候群"],"ギャンブル|パチンコ|競馬|スロット|ガチャ|課金|競輪|カジノ",
+["やめましょう。今日から一生。","台に座らなければ負けません。","課金した分、働いてください。","アプリを消しましょう。今。","勝つまでやる、はやめましょう。","ガチャは回さなければ爆死しません。","今月の課金額を紙に書いて、燃やしましょう。"]],
+[["チャート凝視症","含み損ストレス症"],"投資|株|FX|仮想通貨|NISA|積立|ビットコイン",
+["買ったら二度と見ないでください。","チャートを見るのをやめましょう。","10年寝かせましょう。","全部現金です。","やらなければ減りません。","全力で買いましょう。…とは言えないので、全力で勉強しましょう。","SNSの投資情報は全部無視しましょう。"]],
+[["労働過多症","出社拒否症候群","社畜予備軍"],"上司|会社|仕事|職場|転職|退職|辞め|残業|同僚|バイト|出勤|会議|部下|就職|就活|面接|社長",
+["辞めましょう。今日です。","辞めないなら文句を言わないでください。","社長になりましょう。","黙って働いてください。","退職届を書いてみましょう。書くだけです。","転職活動をしてください。3社同時に。","出社して座っていれば給料は出ます。","全員に感謝して働きましょう。","会社を作りましょう。","有給は使い切るものです。使いましょう。","定時で帰りましょう。全員の前で堂々と。","上司より先に出世しましょう。","今の会社を辞めて、今の会社に戻りましょう。","会議には出ないでください。","仕事は寝て忘れましょう。"]],
+[["恋煩い","片思い慢性化症","ときめき不足症"],"恋|彼氏|彼女|好き|告白|振られ|フラれ|結婚|浮気|片思い|片想い|デート|付き合|別れ|元カノ|元カレ|婚活|マッチング",
+["今すぐ告白しましょう。","振られたら次です。","別れましょう。","結婚しましょう。今すぐに。","諦めてください。世界に80億人います。","連絡しましょう。「今から会える？」と。","浮気する人は一生浮気します。別れてください。","好きなら好きと言いましょう。以上。","待つのはやめて、迎えに行きましょう。","全員に告白してください。","一人で生きていきましょう。","髪を切りましょう。話はそれからです。","元恋人の連絡先は全部消しましょう。","告白は3日以内。それ以降は友達です。","付き合わなくてもいいです。会いましょう。"]],
+[["対人関係こじらせ症","人間疲れ症候群"],"友達|友人|人間関係|嫌われ|ママ友|陰口|孤立|グループ|付き合い|飲み会|LINE|既読",
+["全員と縁を切りましょう。","嫌われてもいいので、嫌ってください。","直接言いましょう。今。","気にしないでください。以上です。","引っ越しましょう。","友達は3人いれば十分です。0人でも十分です。","無視しましょう。完全に。","先に謝りましょう。全員に。","会わなければ解決します。","人は変わりません。あなたが去りましょう。","既読無視は既読無視で返しましょう。","飲み会は断りましょう。一生。"]],
+[["ハラスメント被害症状","巻き込まれ事故"],"いじめ|パワハラ|モラハラ|セクハラ|ハラスメント|嫌がらせ|無視される|いやがらせ",
+["逃げましょう。逃げて勝ちです。","証拠を全部残してください。","今すぐ相談窓口に行きましょう。","離れましょう。あなたは悪くありません。","録音しましょう。今日から。","辞めましょう。転校しましょう。場所は変えられます。"]],
+[["体型気になり症","運動不足病"],"太|痩せ|ダイエット|体重|肥満|筋肉|運動|ジム|腹|ぽっちゃり|筋トレ",
+["走りましょう。","筋肉は裏切りません。","体重計を捨てましょう。","今のあなたで完成です。","とりあえず歩きましょう。","腹筋を30回。今。","食べたいものを食べて、その分動きましょう。","階段を使いましょう。一生。","鏡の前でスクワットしましょう。","運動は始めた日が初日です。"]],
+[["睡眠不足病","夜更かし常習症","二度寝依存症"],"眠|寝|睡眠|不眠|夜更かし|朝起き|起きれ|寝坊|朝が弱|目が覚め",
+["寝てください。以上です。","寝ましょう。他は全部あとです。","起きましょう。今すぐ。","スマホを捨てて寝ましょう。","起きている時間は寝るための準備です。","二度寝は正義です。","目覚ましを増やすより、寝る時間を前にしましょう。","寝ればだいたい解決します。","カーテンを開けましょう。以上。","23時までに布団に入ってください。"]],
+[["試験前症候群","机に向かえない病","暗記拒否症"],"勉強|受験|テスト|試験|宿題|資格|成績|大学|留年|単位|偏差値|卒論|論文",
+["やればできます。やらなければできません。","寝てからやりましょう。","やる気は出ません。始めれば出ます。","諦めて別の道を探しましょう。","過去問を100回解いてください。","机に座れば勉強です。","暗記しましょう。全部。","受かるまで受けましょう。","参考書は1冊に絞って、100周してください。","わからない所は先生に聞きましょう。今日中に。"]],
+[["お疲れ様症候群","燃え尽き予備軍","電池切れ症"],"疲れ|しんど|だるい|やる気|無気力|モチベ|燃え尽き|休みたい|ぐったり",
+["休みましょう。全部。","気合いで乗り切ってください。","何もしないでください。","風呂に入りましょう。","食べて寝ましょう。","全部投げ出しましょう。","水を飲みましょう。","今日は負けでいいです。","予定を全部キャンセルしましょう。","とりあえず横になりましょう。"]],
+[["将来不安症","考えすぎ病","心配性こじらせ症"],"将来|不安|心配|怖い|ストレス|緊張|落ち着かない|焦",
+["未来は来ます。それだけです。","今日を生きてください。","考えるのをやめましょう。","最悪を想像して受け入れましょう。","不安は才能です。使いましょう。","全部なんとかなります。ならなくても生きています。","心配事の9割は起きません。1割は起きます。以上。","不安なら動きましょう。動けば不安は減ります。"]],
+[["選択障害","決断力不足症","迷子症候群"],"迷|どうすれば|どうしたら|選|どっち|悩|決められ|決まらな",
+["右です。","やりましょう。","やめましょう。","両方やめて第三の道へ。","コインを投げてください。出た目が答えです。","迷うならやる。","迷うならやめる。","今すぐ決めて、後悔は明日の自分に任せましょう。","高いほうを選びましょう。","安いほうを選びましょう。","先に来たほうです。","両方やりましょう。"]],
+[["容姿コンプレックス症","鏡凝視症"],"顔|ブス|イケメン|容姿|見た目|髪|ハゲ|身長|服|おしゃれ|コンプレックス|ニキビ|肌",
+["髪を切りましょう。","清潔にしましょう。以上です。","鏡の前で笑いましょう。","見た目は気にしないでください。誰も見ていません。","服を全部買い替えましょう。","中身で勝負しましょう。ない場合は見た目です。","姿勢を正しましょう。顔より効きます。","髪型を変えましょう。人生が変わります。"]],
+[["家族問題症候群","実家ホームシック症"],"親|母|父|兄|姉|弟|妹|実家|子供|子育て|嫁|姑|夫|妻|旦那|家族|義母|義父",
+["実家を出ましょう。","親に感謝しましょう。今すぐ電話を。","距離を置きましょう。物理的に。","全部話し合いましょう。","子どもは勝手に育ちます。","パートナーに任せましょう。","ごめんなさいと言いましょう。先に。","家族は選べません。距離は選べます。","実家に帰りましょう。"]],
+[["スマホ中毒症","先延ばし病","だらだら慢性症"],"先延ばし|サボ|だらだら|ゲーム|スマホ|YouTube|youtube|動画|ネット|ダラ|やる気が出な|集中",
+["やめましょう。今。","スマホを置きましょう。","5分だけやりましょう。","ゲームを消しましょう。","作業が先、遊びが後です。","スマホは冷蔵庫に入れましょう。","通知を全部切りましょう。","今やらないなら、一生やりません。"]],
+[["夢追い人症候群","自己実現不足症"],"夢|やりたいこと|目標|才能|向いて|フリーランス|起業|YouTuber|ユーチューバー|歌手|漫画|作家|クリエイター|絵|音楽|配信",
+["やりましょう。今日から。","才能は後からついてきます。","毎日やれば才能です。","向いてなくてもやりましょう。","誰かが見る前に、作りましょう。","1000本作ってから悩みましょう。","生活費を稼いでから夢を見ましょう。","今日、1つ完成させましょう。"]],
+[["孤独感症候群","ひとり時間過多症"],"寂しい|孤独|ひとり|一人|暇|さみしい|ぼっち",
+["外に出ましょう。","犬を飼いましょう。","誰かに連絡しましょう。今。","寂しさは慣れます。","散歩しましょう。","誰もいなければ、自分と仲良くしましょう。","喫茶店に行きましょう。"]],
+[["怒り蓄積症","瞬間湯沸かし症"],"ムカつく|腹が立つ|イライラ|むかつく|許せない|怒り|キレ|うざい|ウザい",
+["深呼吸して、殴らずに寝ましょう。","許せなくていいです。忘れましょう。","走ってきてください。","紙に書いて、破りましょう。","怒りは6秒で収まります。6秒待ちましょう。","相手に言う前に、一晩寝かせましょう。"]],
+[["後悔過多症","やらかし慢性症"],"失敗|後悔|やらかし|ミス|間違え|ごめん|謝|やってしまった",
+["謝りましょう。今。","忘れましょう。","次です。","時間は戻りません。進みましょう。","反省は5分。あとは前へ。","先に自分から連絡しましょう。","全部正直に話しましょう。"]],
+[["猫不足症","動物愛護症"],"猫|犬|ペット|動物|うさぎ|ハムスター|インコ",
+["全部飼いましょう。","猫を信じましょう。","撫でれば解決します。","犬と散歩しましょう。","保護猫を迎えましょう。","動物に聞いてください。"]],
+[["空腹症候群","献立迷子症"],"何食べ|ご飯|ランチ|夕飯|晩ご飯|昼ご飯|料理|献立|お腹",
+["ラーメンです。","カレーです。","卵かけご飯です。","昨日と同じです。","食べたいものを食べましょう。","白米です。","寿司です。回らないやつです。","うどんです。","コンビニに行きましょう。"]],
+[["旅行したい症候群","外出欲求不満"],"旅行|遊び|休日|予定|行きたい|旅|観光|温泉",
+["行きましょう。","家にいましょう。","北に行きましょう。","一人で行きましょう。","今すぐ新幹線に乗りましょう。","温泉に行きましょう。","目的地は決めず、とりあえず駅へ。"]],
+[["片付けられない症","ゴミ屋敷予備軍"],"引っ越し|住む|部屋|片付け|掃除|ゴミ|散らかっ|断捨離|物が多い",
+["全部捨てましょう。","引っ越しましょう。","掃除しましょう。話はそれからです。","床が見えるまで片付けましょう。","1日1個捨てましょう。","使ってないものは、もう要りません。"]],
+[["衝動買い症","ポチり症候群"],"買|欲しい|ほしい|ポチ|買う|ショッピング|通販|セール",
+["買いましょう。","買ってから考えましょう。","3日待って、まだ欲しければ買いましょう。","買うな。","今あるものを使い切りましょう。","買わずに我慢した分、貯金しましょう。","欲しいと思った時が買い時です。(嘘です)"]],
+[["体調不良症状","受診推奨症状"],"病気|頭痛|腰|肩こり|風邪|体調|病院|痛い|熱|咳|吐き気|めまい",
+["病院に行きましょう。","寝て治しましょう。","水を飲みましょう。","本物の医者に聞いてください。ここは架空です。","動きましょう。","休みましょう。","薬局に行きましょう。"]],
+[["SNS疲れ","いいね不足症","炎上恐怖症"],"SNS|ツイッター|Twitter|インスタ|炎上|フォロワー|バズ|いいね|エゴサ|アカウント|X(旧",
+["SNSを閉じましょう。","アカウントを全部消しましょう。","投稿しましょう。バズるまで。","見なければ存在しません。","フォロワーより睡眠です。","エゴサはやめましょう。","通知を切りましょう。"]],
+[["年齢気にし症","手遅れ妄想症"],"年齢|歳|おじさん|おばさん|遅い|手遅れ|もう若くない|老後|定年|年",
+["手遅れです。今から始めましょう。","今日が一番若いです。","年は関係ありません。","遅いのは気のせいです。","人生100年、まだ序盤です。","老後は老後の自分に任せましょう。"]],
+[["あがり症","口下手こじらせ症"],"話|人前|プレゼン|コミュ|喋|会話|発表|自己紹介|スピーチ|話しかけ",
+["堂々としましょう。","声を大きくしましょう。","黙りましょう。","準備しましょう。以上。","笑顔です。","みんなカボチャだと思いましょう。","間を取りましょう。ゆっくり。"]],
+[["ご挨拶症","診察前緊張症"],"こんにちは|こんばんは|おはよう|はじめまして|テスト|test|初めまして|よろしく",
+["ようこそ。診察を始めます。","ご用件をどうぞ。","挨拶は結構です。悩みをどうぞ。","こんにちは。以上です。","お大事にしないでください。悩みをどうぞ。"]]
+];
+function B(a){return a.filter(function(x){return CFG.ban.indexOf(x)<0})}
+function P(a){var b=B(a);return pick(b.length?b:a)}
+var YN=/べき|していい|してもいい|ですか|でしょうか|かな|ほうがいい|？|\?|どう思/;
+var YA=["はい。","いいえ。","やりなさい。","やめなさい。","今すぐ。","一生ダメです。","当たり前です。","聞くまでもありません。","もちろん。","全然。","むしろ逆です。","答えはYESです。いや、NOです。"];
+var G=["やりましょう。","やめましょう。","気合いです。","寝てください。","頑張ってください。","諦めましょう。","それは問題ではありません。","気にしないでください。","全部やめましょう。","全部やりましょう。","逃げましょう。","戦いましょう。","明日にしましょう。","今日にしましょう。","笑いましょう。","泣きましょう。","走りましょう。","歩きましょう。","黙りましょう。","叫びましょう。","食べましょう。","忘れましょう。","諦めたら、そこで試合終了です。","悩むのをやめましょう。","とりあえず外に出ましょう。","誰かに頼りましょう。","一人でやりましょう。","お金で解決しましょう。","時間が解決します。","気のせいです。"];
+var F={money:0,work:3,love:4,human:5,health:7,other:-1};
+var CHIEF=["極 論太郎（院長）","断言 花子（副院長）","即答 次郎（研修医）","一刀（看護師長）","白黒 つけ子（非常勤）","結論 急（救急担当）"];
+var SUF=["","","","","異論は認めません。","以上です。","次の方どうぞ。","なお、責任は負いかねます。","効果には個人差があります。","これは極論です。","迷ったら、もう一度診察へ。","お大事にしないでください。"];
+var USE=["1日1回、気合いで","毎食後、考えずに","就寝前、深呼吸のあとに","今すぐ、迷わず","3日間、振り返らずに","1回5分、言い訳なしで","朝イチ、顔を洗ってから","一生、毎日","思い出した時に、即座に","週3回、全力で"];
+var SIDE=["特にありません。強いて言えば、きっぱりします。","一時的に、まわりが引くことがあります。","スッキリして、悩みを忘れることがあります。","やや自己責任が強まります。","行動力が上がりすぎることがあります。","口調が断定的になることがあります。","眠気、または急な決断が出ることがあります。","世の中が白か黒に見えることがあります。"];
+var CARE=/死に?たい|消えたい|自殺|自傷|リスカ|生きて(い)?たくない|殺したい|虐待|DV|暴力を受|性被害|レイプ|いなくなりたい|終わりにしたい|オーバードーズ|OD/i;
+function pick(a){return a[Math.floor(Math.random()*a.length)]}
+var f=document.getElementById("f"),btn=document.getElementById("go"),rx=document.getElementById("rx"),care=document.getElementById("care"),again=document.getElementById("again"),share=document.getElementById("share");
+var last="";
+function diagnose(q,dep){
+ var t=q.toLowerCase(),best=-1,bs=0,i,j,ks,s;
+ for(i=0;i<C.length;i++){ks=C[i][1].split("|");s=0;for(j=0;j<ks.length;j++){if(ks[j]&&t.indexOf(ks[j].toLowerCase())>-1)s++}if(s>bs){bs=s;best=i}}
+ var pool,dx;
+ if(best>-1){pool=C[best][2];dx=pick(C[best][0])}
+ else if(YN.test(q)){pool=YA;dx="はい／いいえ症"}
+ else{
+  pool=G.concat(CFG.extra);dx=pick(["原因不明の悩み過多症","悩み多感症","考えすぎ病","ぼんやり悩み症"]);
+  if(F[dep]>0||F[dep]===0){pool=C[F[dep]][2].concat(G,CFG.extra)}
+ }
+ var a,n=0;do{a=P(pool);n++}while(a===last&&n<8);
+ last=a;
+ return{ans:a,dx:dx};
+}
+var WEIRD=[
+{n:"にゃんこ先生（猫）",dx:["猫語診断中","ニャー症候群"],a:["にゃー。","…（寝た）","ごろごろ。","（キーボードの上に座った）","（無視された）","ふー！（威嚇）"]},
+{n:"通りすがりの人",dx:["通りすがり症"],a:["知りません。","とりあえず牛丼です。","すみません、急いでるので。","たぶん大丈夫です。","私に聞かれましても。"]},
+{n:"8歳の自称院長",dx:["おやつ不足症","遊び足りない病"],a:["ゲームしよ。","おやつ食べたい。","ぼくわかんない。","おもしろいほうがいいよ。","ねよ。ねむい。"]},
+{n:"占い師ドクター",dx:["運気低下症","水星逆行症"],a:["今日のラッキーカラーは黄色です。","北西の方角が吉です。","タンスの角に気をつけてください。","水星が逆行しています。何もしないでください。"]},
+{n:"ロボ医師 KYOKU-3000",dx:["回路エラー","極論演算エラー"],a:["エラー。極論を再計算中。結論：寝ろ。","ピー。ガガガ。答え：YES。","演算完了。答えは42です。","本機は悩みを理解しません。やりなさい。"]},
+{n:"関西のおっちゃん医師",dx:["考えすぎやで症"],a:["知らんがな。やったらええやん。","ほな、やめとき。","そんなん気にせんでええ。飴ちゃんやるわ。","なんでやねん。"]},
+{n:"ラスボス（院長代理）",dx:["勇者待ち症"],a:["我を倒してから出直すがよい。","悩みなど、闇に飲まれて消えるがよい。","ふはは、答えは自分で探せ。","よくぞここまで来た。答えは…ない。"]},
+{n:"武士の先生",dx:["武士道不足症"],a:["拙者は右と見た。","迷うな。潔く決めよ。","案ずるな。なるようになる。","腹を括れ。"]}
+];
+var PHIL={n:"名もなき哲人",dx:["存在論的悩み症（極めて稀）","問いの迷宮症"],a:["悩みとは、問いが姿を変えたものだ。","答えを求める者は、すでに半分を手にしている。","極論とは、迷いの別名にすぎない。","道は、歩いた後にできる。","あなたの悩みは、思うより小さく、思うより大きい。","問いを抱えたまま眠りなさい。朝が答えを運んでくる。","選ばないことも、ひとつの選択である。","答えを探すな。問いを味わえ。"]};
+var MORE={
+0:["家計簿をつけましょう。1円単位で。","給料日に全額おろして、封筒に分けましょう。","コンビニに行かなければ、お金は減りません。","高いものは買わない。以上です。","お金は使うためにありますが、今は使うな。","通帳を見ましょう。現実から目をそらさずに。","税金は払いましょう。それだけは。"],
+1:["やめたいなら、今日が最終日です。","負けたお金は戻りません。次はありません。","賭け事の話をするのは、今日で終わりにしましょう。","勝った記憶だけ残るのは、病気です。"],
+2:["10年後の自分に任せましょう。","売るなら今、持つなら一生。","情報を見すぎです。目を閉じましょう。","余ったお金だけでやりましょう。余らないなら、やるな。"],
+3:["明日の朝イチで言いましょう。「辞めます」と。","辞めるなら円満に。辞めないなら笑顔で。","自分の席を守るより、自分の価値を上げましょう。","給料が安いなら、上げてもらいましょう。上がらないなら、転職です。","上司は選べません。会社は選べます。","忙しいなら、断りましょう。断れないなら、辞めましょう。","評価されないなら、評価される場所へ行きましょう。","仕事は仕事、人生は人生です。分けましょう。"],
+4:["気持ちを伝えましょう。伝えなければ、ないのと同じです。","1ヶ月待って、返事がなければ終わりです。","相手のSNSを見るのをやめましょう。","会いたいなら、会いに行きましょう。","別れた相手のことは、考えるだけ損です。","付き合う前に、一緒にご飯を食べましょう。全部わかります。","「いい人」は卒業して、「好きな人」になりましょう。","結婚は、決めた日が記念日です。","先に好きになったほうが負けです。負けましょう。"],
+5:["謝りたくなければ、謝らなくていいです。縁も切れます。","会う頻度を、半分にしましょう。","返信は3日後でいいです。","嫌いな人の話は、しないことです。","友達を減らして、深くしましょう。","先に連絡した人が勝ちです。","相談する相手を間違えています。","誘われなかったなら、自分で誘いましょう。"],
+6:["あなたは悪くありません。相手が悪いです。","まず、安全な場所へ。話はそのあとです。","記録、録音、相談。この順番です。","一人で戦わないでください。専門家を頼りましょう。"],
+7:["今日の運動は、靴を履くところからです。","1日1万歩は、1日1歩から。","筋トレは、やめたときが始まりです。","朝のランニングは、夜から始まっています。","プロテインより、睡眠です。","ジムに行く前に、ジムを決めましょう。","運動した日は、自分を褒めましょう。"],
+8:["夜のコーヒーは悪です。","朝日を浴びてください。以上です。","23時のスマホは、寝坊の入口です。","寝る前に悩まないでください。悩みは朝に回しましょう。","枕を替えましょう。話はそれからです。","休日も同じ時間に起きましょう。"],
+9:["勉強は、始めるのが9割です。","1日30分でいいので、毎日やりましょう。","スマホは別の部屋へ。","間違えた問題だけ、やりましょう。","今日の分は、今日中に。","参考書を増やすより、解き直しです。","分からないところは、分からないと言いましょう。"],
+10:["今日はもう、何もしなくていいです。","やることリストを、全部消しましょう。","おいしいものを食べて、早く寝ましょう。","疲れたと言える人は、まだ大丈夫です。休みましょう。","ぼーっとする時間を、予定に入れましょう。","とりあえず、お風呂で5分。"],
+11:["不安は、紙に書けば半分になります。","未来のことは、未来の自分に任せましょう。","今できることは、今日の1つだけです。","準備できることだけ準備して、あとは忘れましょう。","最悪の場合でも、何とかなっています。","考えても変わらないことは、考えないことです。"],
+12:["やって後悔しましょう。やらずに後悔するより、マシです。","すぐ決められないなら、やらなくていいです。","3秒で決めてください。1、2、3。","直感を信じましょう。直感はだいたい合っています。","間を取るのはやめましょう。","人に聞いている時点で、答えは出ています。","誰かに聞く前に、紙に書き出しましょう。"],
+13:["姿勢と清潔感。それが全てです。","美容院に行きましょう。今すぐ予約を。","鏡を見る回数を減らしましょう。","自信のある人は、美しく見えます。","笑顔が最強です。","服はシンプルに、サイズは合わせて。"],
+14:["家族こそ、遠慮せず話しましょう。","「ありがとう」を、今日中に言いましょう。","一人暮らしを始めましょう。","親も人間です。完璧ではありません。","話し合っても無駄なら、距離を取りましょう。","子どもに任せましょう。子どもは強いです。"],
+15:["スマホの画面を白黒にしましょう。","アプリを全部消しましょう。必要なものだけ戻しましょう。","やる気は、行動のあとに出ます。","まず机の上を片付けましょう。","タイマー25分、休憩5分。以上です。","明日やるは、一生やりません。"],
+16:["今日の1歩が、全ての始まりです。","「いつか」は来ません。今日です。","100人に見せましょう。1人は刺さります。","続ければ、勝ちです。","お金より、時間を使いましょう。","最初は下手でいいです。下手を続けましょう。"],
+17:["孤独を楽しみましょう。贅沢です。","近所を一周歩きましょう。誰かに会います。","電話を1本かけましょう。","寂しいなら、人のいる場所に行きましょう。","趣味のコミュニティに入りましょう。","寂しい夜は、早く寝ましょう。"],
+18:["言う前に、10秒数えましょう。","怒りは、メモして寝かせましょう。","相手に期待しなければ、怒りません。","運動して、汗と一緒に流しましょう。","怒るなら、笑いましょう。","怒ったことは、1週間後に見直しましょう。"],
+19:["もう終わったことです。明日を見ましょう。","失敗は、笑い話になります。","同じ失敗は、2回までです。","反省して、お風呂に入って、寝ましょう。","謝って済むなら、謝りましょう。"],
+20:["動物は、あなたの味方です。","毎日撫でましょう。","ペットは家族です。全力で愛しましょう。","猫は、飼い主より偉いです。"],
+21:["迷ったらカレーです。","昨日食べたものは、今日は避けましょう。","ご飯は、白米が最強です。","コンビニで、いちばん高いものを買いましょう。","作りましょう。炒めるだけでいいです。","ラーメンに、卵をつけましょう。","今日は、焼肉です。"],
+22:["今すぐ予約しましょう。","行き先は、1番行きたいところです。","一人旅に行きましょう。人生が変わります。","日帰りでいいです。行きましょう。","計画を立てすぎないことです。","家が一番、という日もあります。"],
+23:["1つ捨てるごとに、1つ軽くなります。","まず、玄関から。","1年使わなかったものは、手放しましょう。","床に物を置かないことです。","片付けは、15分だけで十分です。"],
+24:["今日は、買わなくていいです。","必要なものだけ、買いましょう。","本当に欲しいなら、買いなさい。","レジの前で3秒考えて、それでも欲しければ買いましょう。","買い物かごに入れて、寝ましょう。","同じものを持っていないか、確認しましょう。"],
+25:["体の声を聞いてください。休みなさい。","痛みを我慢しないで、病院へ。","水分と睡眠。まずそこからです。","検索せずに、診てもらってください。","温めましょう。それで治らなければ、病院です。"],
+26:["通知を全部切りましょう。","1日30分までにしましょう。","他人の投稿は、他人のものです。","投稿する前に、1晩寝かせましょう。","見るより、作りましょう。","アカウントは、いつでも消せます。"],
+27:["何歳でも、始めた人が勝ちです。","年齢は、数字です。","遅いと思った瞬間が、始まりです。","今が一番若いです。使いましょう。","年を取ることを、楽しみましょう。"],
+28:["最初に、笑いましょう。","練習すれば、うまくなります。","声は、ゆっくり、大きく。","原稿を読めば大丈夫です。","緊張は、味方です。","一言目を決めておきましょう。"],
+29:["ようこそ。悩める子羊よ。","診察室へどうぞ。","お待ちしておりました。","本日はどのようなご用件でしょう。"]
+};
+for(var mk in MORE){C[mk][2]=C[mk][2].concat(MORE[mk])}
+C.push(
+[["自信喪失症","比較疲れ症候群"],"自信|自己肯定|劣等感|比べ|才能がない|自分がダメ|自分に自信|コンプ",
+["自信は、行動のあとについてきます。","比べる相手は、昨日の自分だけです。","とりあえず、自分を褒めましょう。","ダメなところも含めて、全部あなたです。","できることを1つ、やりましょう。","他人は他人、あなたはあなたです。","小さな成功を、積み上げましょう。","自信がなくても、やりましょう。"]],
+[["天気病","気象感受性症候群"],"天気|暑い|寒い|雨|梅雨|花粉|台風|雪|猛暑|湿気",
+["暑ければ脱ぎましょう。","寒ければ着ましょう。","雨なら濡れましょう。","花粉は、無視です。","冷房を入れましょう。我慢しないで。","天気は変えられません。服を変えましょう。","傘を持ちましょう。","暑いなら、アイスです。"]],
+[["娯楽迷子症","積みコンテンツ症"],"映画|音楽|本|アニメ|漫画|ドラマ|おすすめ|読書|小説|ライブ",
+["最初から見ましょう。","今すぐ再生してください。","名作を3回見ましょう。","積んでいる本から、先に読みましょう。","推しを信じましょう。","ネタバレは見ないことです。","評価は、自分で決めましょう。"]],
+[["締切恐怖症","時間不足症"],"締め切り|締切|間に合わ|遅刻|時間がない|納期|期限|提出",
+["今すぐ始めてください。","謝って、提出しましょう。","遅刻するなら、堂々と。","優先順位は、1つだけです。","終わるまで、終わりません。","完璧より、提出です。","今日できることは、今日やりましょう。"]],
+[["退屈症候群","暇人病"],"退屈|ひま|やることがない|つまらない|暇つぶし",
+["掃除をしましょう。","散歩に行きましょう。","寝ましょう。","新しいことを始めましょう。","友達に電話しましょう。","本を1冊読みましょう。","何もしないのも、贅沢です。"]],
+[["運気不安症","ツイてない病"],"運|占い|ついてない|ツイてない|不運|厄|縁起|ジンクス",
+["運は、動いた人のもとに来ます。","塩をまきましょう。","今日は、家にいましょう。","宝くじは、買わないでください。","運のせいにしないことです。","寝れば、運気は戻ります。"]],
+[["勇気不足症","一歩目症候群"],"勇気|挑戦|一歩|踏み出|怖くてできない|チャレンジ|新しいこと",
+["踏み出しましょう。","失敗しましょう。","今です。","やってから考えましょう。","怖いなら、やるべきです。","最悪、笑われるだけです。","3秒で、やりましょう。"]],
+[["三日坊主症","継続困難症"],"趣味|ハマる|続かない|三日坊主|習慣|飽きる|習い事",
+["3日続けば十分です。","毎日5分だけ。","続かないなら、やめましょう。","始めた日が、記念日です。","形から入りましょう。","飽きたら、次に行きましょう。"]],
+[["お祝い症","イベント疲れ"],"誕生日|プレゼント|記念日|クリスマス|バレンタイン|結婚式|お祝い|贈り物",
+["気持ちが全てです。","迷ったら、お菓子です。","手紙を書きましょう。","直接、おめでとうと言いましょう。","高いものを贈ればいいわけではありません。","花を贈りましょう。"]]
+);
+G=G.concat(["すぐ動きましょう。","動いてから考えましょう。","全部、気のせいです。","笑えば解決します。","お風呂に入りましょう。","外の空気を吸いましょう。","深呼吸を3回しましょう。","水を飲みましょう。","コーヒーを淹れましょう。","お茶にしましょう。","好きなものを食べましょう。","好きな音楽を聴きましょう。","寝る前に忘れましょう。","最悪、死にはしません。","人生は、意外と何とかなります。","とりあえず1回やってみましょう。","3日間だけ、頑張ってみましょう。","1ヶ月やって、ダメなら変えましょう。","やりたいことだけやりましょう。","やりたくないことは、やめましょう。","誰かに頼りましょう。","一人で抱えないことです。","相談する相手を間違えています。","その悩みは、来週には忘れています。","答えは、もう知っているはずです。","自分を信じましょう。","自分を疑いましょう。","どちらでも大丈夫です。","やるなら全力で、やらないなら潔く。","時間をかけても、答えは変わりません。","一晩寝てから、また来てください。","手を動かしましょう。","まず片付けましょう。","メモを取りましょう。","声に出してみましょう。","散歩しましょう。話はそれからです。","今日は早く寝ましょう。","考えるより、先に歩きましょう。","遠回りも、道です。","逃げるのも、戦略です。","勝負は、今です。","諦めない人が、勝ちです。","諦める勇気も、必要です。","白黒つけましょう。","グレーでいいです。","全部、運です。","全部、努力です。","やる気は、捨てましょう。習慣にしましょう。"]);
+YA=YA.concat(["もちろんです。","全くその通りです。","絶対にやめてください。","やってください。今すぐ。","聞くだけ無駄です。","答えは決まっています。はい。","迷うまでもありません。いいえ。","七三で、はいです。","99%、いいえです。","やるなら今、やらないなら一生。"]);
+SUF=SUF.concat(["悪いことは言いません。","騙されたと思って。","信じるか信じないかは、あなた次第です。","院長の勘です。","根拠はありません。","当院調べ（調べていません）。","以上、診察を終わります。","お大事に（しないでください）。","処方箋は、ありません。","会計は、無料です。"]);
+USE=USE.concat(["起床後すぐ、迷わず","週1回、気が向いたときに","1日3回、食前に気合いを","1回につき、全力で","3日分、一気に","人前で、堂々と","鏡の前で、声に出して","夜中に、こっそりと"]);
+SIDE=SIDE.concat(["悩みが小さく見えることがあります。","突然、行動したくなることがあります。","まわりから、頼もしく見えることがあります。","極論が癖になることがあります。","何も考えなくなることがあります。","眠くなることがあります。","お腹が空くことがあります。","笑いが止まらなくなることがあります。"]);
+var WM={0:["（ゴロゴロと喉を鳴らしている）","にゃーん？","（毛づくろいを始めた）","ごはん。","（窓の外を見つめている）"],1:["お大事に。","どうも。","ちょっと、急いでるんで。","ああ、いいんじゃないですか。","さあ…。"],2:["あそぼー。","がっこういきたくない。","おなかすいた。","ぼくが院長だよ。","おかあさんにきいて。"],3:["ラッキーアイテムは、傘です。","星が味方しています。","月が欠けています。決断は来週に。","水晶玉が曇っています。","今日の運勢は、大吉です。ただし午後から。"],4:["ピポパポ。結論：やりなさい。","処理中…処理中…処理不能。","学習データにありません。寝てください。","再起動してください。","検索結果：該当なし。"],5:["そんなん自分で決めなはれ。","ええやん、ええやん。","まあ、ぼちぼちやな。","もうかりまっか。","知らんけど。"],6:["それが、お前の運命だ。","フハハハ、悩め悩め。","我が前に立つとは、愚かな。","最終形態に変身する前に帰れ。","お前の悩みは、我が糧となる。"],7:["御意。","いざ、尋常に。","拙者、決断が早いのが取り柄でござる。","天下布武でござる。","案ずるな、拙者に任せよ。"]};
+for(var wk in WM){WEIRD[wk].a=WEIRD[wk].a.concat(WM[wk])}
+WEIRD.push(
+{n:"犬の助手（わん太）",dx:["尻尾振りすぎ症","おやつ不足症"],a:["わん！","（ボールを持ってきた）","（しっぽをぶんぶん振っている）","くぅーん。","（散歩に行きたそうに見ている）"]},
+{n:"たこ焼き屋の大将",dx:["腹ペコ症候群"],a:["まいど！たこ焼き食べていき！","熱いうちに食べなはれ。","悩んでる暇があったら、ひっくり返し。","大将の悩みは、たこが足りんことや。"]},
+{n:"昔話のおじいさん",dx:["昔ばなし症候群"],a:["むかしむかし、あるところに…（寝た）","川に洗濯に行きなされ。","桃が流れてきたら、拾いなされ。","山へ芝刈りに行きなされ。"]},
+{n:"宇宙人のドクター",dx:["地球人理解不能症","宇宙酔い"],a:["ワレワレハ、ウチュウジンダ。","地球人の悩みは、よくわからない。","ピピピ。答えは、宇宙の彼方にある。","母星に帰りなさい。"]},
+{n:"コンビニ店員さん",dx:["深夜シフト疲れ症"],a:["レジ袋、いりますか？","温めますか？","お箸はおつけしますか？","お会計、結構です。悩みは無料です。"]}
+);
+PHIL.a=PHIL.a.concat(["時は流れず、ただあなたが動くのだ。","悩みは、生きている証である。","問いに答えが出たとき、問いは役目を終える。","迷いの中にこそ、道がある。","何も選ばないという選択が、最も重い。","影は、光があるから生まれる。悩みも同じだ。","昨日の悩みは、今日の笑い話である。","山は登るためにあり、悩みは越えるためにある。"]);
+var cv=document.getElementById("cv"),smsg=document.getElementById("smsg"),curBlob=null,cur=null;
+function wrap(c,t,mw){var L=[],cu="";for(var i=0;i<t.length;i++){var ch=t[i];if(c.measureText(cu+ch).width>mw){L.push(cu);cu=ch}else cu+=ch}if(cu)L.push(cu);return L}
+function draw(res,q){
+ var c=cv.getContext("2d"),W=1200,H=675,sec=res.secret,F='"Hiragino Sans","Noto Sans JP","Yu Gothic",Meiryo,sans-serif';
+ var g=c.createLinearGradient(0,0,W,H);
+ if(sec){g.addColorStop(0,"#fff3c4");g.addColorStop(1,"#f0d98a")}else{g.addColorStop(0,"#e8f6f5");g.addColorStop(1,"#cfeae7")}
+ c.fillStyle=g;c.fillRect(0,0,W,H);
+ var pri=sec?"#8a6a00":"#0a6e6a",pr2=sec?"#c9a227":"#0e8f8a";
+ c.fillStyle=pr2;c.fillRect(0,0,W,96);
+ c.fillStyle="#fff";c.textBaseline="middle";c.textAlign="left";c.font="bold 40px "+F;c.fillText("＋ 極論クリニック　診察結果",40,48);
+ c.textAlign="right";c.font="22px "+F;c.fillText(res.badge||"お悩み相談受付",W-40,48);
+ c.fillStyle="#fff";c.fillRect(40,120,1120,470);c.strokeStyle=pr2;c.lineWidth=4;c.strokeRect(40,120,1120,470);
+ c.textAlign="left";c.textBaseline="alphabetic";
+ c.fillStyle="#5d7a7d";c.font="24px "+F;
+ c.fillText("患者名："+res.name+"　／　担当医："+res.doc,72,170);
+ c.fillText("診断名："+res.dx,72,210);
+ c.fillStyle=pri;c.font="bold 26px "+F;c.fillText("処方",72,262);
+ var ans=res.ans+(res.sf?" "+res.sf:""),fs=60,L;
+ c.font="800 "+fs+"px "+F;L=wrap(c,ans,1056);
+ while(L.length>3&&fs>34){fs-=4;c.font="800 "+fs+"px "+F;L=wrap(c,ans,1056)}
+ c.fillStyle="#1f3a3d";var y=336;L.slice(0,4).forEach(function(l){c.fillText(l,72,y);y+=fs*1.3});
+ c.fillStyle="#5d7a7d";c.font="22px "+F;
+ if(q)c.fillText("相談："+(q.length>34?q.slice(0,34)+"…":q),72,534);
+ c.fillText("極論度："+res.deg+"　／　用法："+res.use,72,570);
+ c.fillStyle=pri;c.font="bold 24px "+F;c.textAlign="right";c.fillText("#極論クリニック　制作 @royal404ex",W-40,640);
+ c.textAlign="left";c.font="20px "+F;c.fillStyle="#5d7a7d";c.fillText("※ジョークです。実際の判断は専門家へ。",40,640);
+}
+function make(q,dep,nm){
+ var phil=/哲学|人生とは|存在|宇宙|なぜ|意味/.test(q),pc=phil?Math.max(0.35,CFG.secret/100):CFG.secret/100,rr=Math.random(),name=nm+" 様";
+ if(rr<pc)return{secret:1,name:name,dx:pick(PHIL.dx),ans:P(PHIL.a),sf:"",doc:"【SECRET】"+PHIL.n,deg:"∞",use:"一生、問い続けること",side:"世界の見え方が少し変わります。",badge:"SECRET"};
+ if(rr<pc+CFG.rare/100){var w=pick(WEIRD);return{name:name,dx:pick(w.dx),ans:P(w.a),sf:"",doc:"【レア】"+w.n,deg:"★★★★★".slice(0,1+Math.floor(Math.random()*5)),use:pick(USE),side:pick(SIDE),badge:"レア医師"}}
+ var r=diagnose(q,dep);
+ return{name:name,dx:r.dx,ans:r.ans,sf:pick(SUF),doc:pick(CHIEF),deg:"★★★★★".slice(0,4+Math.floor(Math.random()*2)),use:pick(USE),side:pick(SIDE),badge:""};
+}
+function render(res,q){
+ document.getElementById("r-name").textContent=res.name;
+ document.getElementById("r-dx").textContent=res.dx;
+ document.getElementById("r-ans").textContent=res.ans+(res.sf?" "+res.sf:"");
+ document.getElementById("r-doc").textContent=res.doc;
+ document.getElementById("r-deg").textContent=res.deg;
+ document.getElementById("r-use").textContent=res.use;
+ document.getElementById("r-side").textContent=res.side;
+ rx.classList.toggle("secret",!!res.secret);
+ cur=res;smsg.textContent="";
+ var wq=document.getElementById("withq").checked;
+ draw(res,wq?q:"");curBlob=null;cv.toBlob(function(b){curBlob=b},"image/png");
+}
+function show(){
+ var q=document.getElementById("q").value.trim();
+ var nm=document.getElementById("nm").value.trim()||"匿名",dep=document.getElementById("dep").value;
+ rx.classList.remove("show");care.classList.remove("show");
+ btn.disabled=true;btn.textContent="診察中…";
+ setTimeout(function(){
+  btn.disabled=false;btn.textContent="診察を受ける";
+  if(CARE.test(q)){care.classList.add("show");care.scrollIntoView({behavior:"smooth",block:"center"});return}
+  render(make(q,dep,nm),q);
+  rx.classList.add("show");
+  rx.scrollIntoView({behavior:"smooth",block:"center"});
+ },900);
+}
+document.getElementById("withq").addEventListener("change",function(){if(cur)render(cur,document.getElementById("q").value.trim())});
+share.addEventListener("click",async function(){
+ if(!cur)return;
+ var text="【極論クリニック】\n診断："+cur.dx+"\n処方："+cur.ans+"\n#極論クリニック by @royal404ex";
+ if(!curBlob){smsg.textContent="画像を準備中です。もう一度押してください。";return}
+ var file=new File([curBlob],"gokuron-result.png",{type:"image/png"});
+ try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],text:text});return}}catch(e){if(e&&e.name==="AbortError")return}
+ window.open("https://x.com/intent/post?text="+encodeURIComponent(text),"_blank","noopener");
+ var dl=null;try{if(typeof claude!=="undefined")dl=await claude.use("downloads")}catch(e){}
+ if(dl){try{await dl.save({filename:"gokuron-result.png",data:curBlob});smsg.textContent="画像を保存しました。Xの投稿画面で添付してください。"}catch(e){smsg.textContent="上のプレビュー画像を長押し／右クリックで保存して、Xに添付してください。"}}
+ else smsg.textContent="上のプレビュー画像を長押し／右クリックで保存して、Xに添付してください。";
+});
+f.addEventListener("submit",function(e){
+ e.preventDefault();
+ if(!document.getElementById("q").value.trim()){document.getElementById("q").focus();return}
+ last="";show();
+});
+again.addEventListener("click",function(){show()});
+
+
+function route(){
+ var t=(location.hash||"").replace("#",""),v=(t==="about"||t==="doctors"||t==="faq"||t==="info"||t==="voice")?t:"home";
+ ["home","about","doctors","faq","info","voice"].forEach(function(n){document.getElementById("v-"+n).hidden=(n!==v)});
+ Array.prototype.forEach.call(document.querySelectorAll("nav a"),function(a){var k=a.getAttribute("href").replace("#","");a.classList.toggle("on",k===t||(k==="top"&&v==="home"&&(!t||t==="top")))});
+ var el=(v==="home"&&t)?document.getElementById(t):null;
+ if(el)el.scrollIntoView();else window.scrollTo(0,0);
+}
+window.addEventListener("hashchange",route);route();
+
+var mb=document.getElementById("menu"),gn=document.getElementById("gnav");
+function setMenu(o){gn.classList.toggle("open",o);mb.setAttribute("aria-expanded",o?"true":"false");mb.setAttribute("aria-label",o?"メニューを閉じる":"メニューを開く");mb.textContent=o?"✕":"☰"}
+mb.addEventListener("click",function(){setMenu(!gn.classList.contains("open"))});
+gn.addEventListener("click",function(e){if(e.target.tagName==="A")setMenu(false)});
+window.addEventListener("hashchange",function(){setMenu(false)});
+
+})();
+</script>
+</body>
+</html>
