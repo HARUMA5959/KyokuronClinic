@@ -116,6 +116,42 @@ body.has-z #app>*:not(.cta){zoom:var(--z,1)}
 }
 @media (prefers-reduced-motion:reduce){.slide{transition:none}}
 .slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.pic{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line);margin:0 0 18px;aspect-ratio:16/9;object-fit:cover}
+
+/* --- layout balance --- */
+.hero{text-align:center}
+.hero-in{display:block;max-width:1100px}
+.hero-tx{max-width:760px;margin:0 auto 20px}
+.facts,.quick{justify-content:center}
+.car{width:100%;margin:0 auto;aspect-ratio:3/2}
+.car .slide:nth-of-type(2) img{object-position:center 28%}
+@media (min-width:720px){.car{aspect-ratio:16/9}}
+@media (min-width:1000px){.car{aspect-ratio:2/1}}
+@media (min-width:721px){
+ nav{justify-content:center}
+ nav a{flex:1 1 auto;justify-content:center;text-align:center;white-space:nowrap;padding:12px 10px}
+ nav a:first-child{border-left:1px solid var(--line)}
+}
+.hid{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cursor:inherit;text-align:inherit}
+.tt{position:fixed;inset:0;z-index:200;background:rgba(10,40,44,.78);display:grid;place-items:center;padding:10px;overflow:auto}.tt[hidden]{display:none}
+.tt-box{background:var(--card);border-radius:14px;padding:12px;width:100%;max-width:420px;box-shadow:0 10px 40px rgba(0,0,0,.4)}
+.tt-top{display:flex;align-items:center;gap:8px;margin-bottom:8px}.tt-top b{margin-right:auto;color:var(--pri2);letter-spacing:.12em}
+.tt-top button,.tt-pad button,.tt-re{min-height:44px;min-width:44px;border:1px solid var(--pri);background:var(--card);color:var(--pri2);border-radius:8px;font:inherit;font-weight:700;cursor:pointer;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+.tt-main{display:flex;gap:12px;align-items:flex-start;justify-content:center}
+.tt-play{position:relative;flex:none}
+#tt-cv{display:block;height:min(58vh,480px);width:auto;aspect-ratio:1/2;border:2px solid var(--pri2);border-radius:6px;background:#f4faf9}
+.tt-msg{position:absolute;inset:0;display:grid;place-items:center;background:rgba(255,255,255,.82);font-weight:800;font-size:24px;color:var(--pri2)}.tt-msg[hidden]{display:none}
+.tt-side{width:90px;font-size:12px;color:var(--mute)}.tt-side>div{margin-bottom:10px}.tt-side b{display:block;font-size:20px;color:var(--tx)}
+#tt-nx{display:block;width:80px;height:80px;background:#f4faf9;border:1px solid var(--line);border-radius:6px}
+.tt-re{width:100%;font-size:14px}.tt-help{font-size:11px;line-height:1.6;margin:10px 0 0}
+.tt-pad{display:flex;gap:6px;margin-top:10px}.tt-pad button{flex:1;min-height:56px;font-size:22px}
+.dgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-bottom:8px}.dcard{display:flex;gap:14px;align-items:center;text-decoration:none;color:var(--tx);margin:0}.dcard:hover{background:var(--acc)}.dcard small{display:block;color:var(--mute);font-weight:400;font-size:14px;line-height:1.6}
+.badge{flex:none;width:48px;height:48px;border-radius:50%;background:var(--pri);color:#fff;display:grid;place-items:center;font-size:20px;font-weight:700}
+.crumb{font-size:14px;color:var(--mute);margin:0 0 6px}.ul2{margin:0;padding-left:22px}.ul2 li{margin:4px 0}
+.rxs{font-weight:800;font-size:18px;color:var(--pri2);border-left:4px solid var(--pri);padding-left:12px;margin:8px 0!important}
+.docrow{display:flex;gap:14px;align-items:center}.docrow .av{margin:0;flex:none;width:52px;height:52px;font-size:24px}.docrow small{display:block;color:var(--mute)}
+.av{font-weight:700;color:var(--pri2)}
+.steps{list-style:none;margin:0;padding:0;counter-reset:s}.steps li{counter-increment:s;display:flex;gap:10px;align-items:center;margin:8px 0}.steps li::before{content:counter(s);background:var(--pri);color:#fff;border-radius:50%;width:28px;height:28px;display:grid;place-items:center;flex:none;font-size:14px;font-weight:700}
+@media (max-width:560px){.dgrid{grid-template-columns:1fr}}
 </style>
 <script type="application/json" id="cfg">{"rare":10,"secret":2,"showCount":true,"extra":[],"ban":[]}</script>
 </head>
@@ -134,7 +170,7 @@ body.has-z #app>*:not(.cta){zoom:var(--z,1)}
     <button type="button" id="hc" aria-pressed="false">配色変更</button>
   </div>
 </header>
-<nav id="gnav"><a href="#top">ホーム</a><a href="#about">クリニック紹介</a><a href="#doctors">医師・実績</a><a href="#faq">よくあるご質問</a><a href="#news">お知らせ</a><a href="#dept">診療科目</a><a href="#voice">患者さんの声</a><a href="#hours">診療時間</a><a href="#consult">オンライン相談</a></nav>
+<nav id="gnav"><a href="#top">ホーム</a><a href="#dept">診療科目</a><a href="#about">クリニック紹介</a><a href="#doctors">医師・実績</a><a href="#voice">患者さんの声</a><a href="#faq">よくあるご質問</a><a href="#news">お知らせ</a><a href="#hours">診療時間</a><a href="#consult">オンライン相談</a></nav>
 <section class="hero" id="top">
   <div class="hero-in">
     <div class="hero-tx">
@@ -166,16 +202,6 @@ body.has-z #app>*:not(.cta){zoom:var(--z,1)}
     <div><time>2026.10.25</time><span class="tag">新設</span><span>クリニック紹介ページを公開しました。</span></div>
   </div>
   <p style="text-align:right;margin:8px 0 0"><a href="#info">お知らせ一覧を見る ›</a></p>
-
-  <h2 id="dept">診療科目</h2>
-  <div class="grid">
-    <div class="dep"><span>💴</span>お金科</div>
-    <div class="dep"><span>💼</span>仕事科</div>
-    <div class="dep"><span>💘</span>恋愛科</div>
-    <div class="dep"><span>👥</span>人間関係科</div>
-    <div class="dep"><span>🍚</span>健康・食事科</div>
-    <div class="dep"><span>🌀</span>その他</div>
-  </div>
 
   <h2 id="hours">診療時間</h2>
   <div class="table-wrap"><table class="table">
@@ -230,6 +256,8 @@ body.has-z #app>*:not(.cta){zoom:var(--z,1)}
 
   </div>
 
+  <div id="v-dept" hidden><div id="dept-body"></div></div>
+
   <div id="v-about" hidden>
     <h2>クリニック紹介</h2>
     <img class="pic" id="pic-ext" alt="クリニックの外観" width="1200" height="675">
@@ -250,7 +278,7 @@ body.has-z #app>*:not(.cta){zoom:var(--z,1)}
       <li>不定期で、特別な医師が出勤することがあります</li>
     </ul>
     <h3 class="sub" id="access">アクセス</h3>
-    <div class="card"><p>📍 インターネットがつながる場所なら、どこからでも受診できます。</p><p>最寄り駅：なし　／　駐車場：なし　／　バリアフリー：画面上の文字サイズ・配色の変更に対応</p></div>
+    <div class="card"><p>インターネットがつながる場所なら、どこからでも受診できます。</p><p>最寄り駅：なし　／　駐車場：なし　／　バリアフリー：画面上の文字サイズ・配色の変更に対応</p></div>
     <h3 class="sub">施設概要</h3>
     <div class="table-wrap"><table class="table info">
       <tr><th>名称</th><td>極論クリニック（架空）</td></tr>
@@ -275,17 +303,17 @@ body.has-z #app>*:not(.cta){zoom:var(--z,1)}
     <h2>医師紹介・実績</h2>
     <img class="pic" id="pic-team" alt="院長とスタッフ" width="1200" height="675" style="object-position:center 25%">
     <div class="docs">
-      <div class="card doc"><div class="av">👨‍⚕️</div><h4>極 論太郎<small>院長</small></h4><p class="sp">専門：決断全般</p><ul><li>極論歴 24年</li><li>判断速度 0.3秒</li><li>「迷った」と言った患者 0人（自己申告）</li></ul><q>迷うな。以上。</q></div>
-      <div class="card doc"><div class="av">👩‍⚕️</div><h4>断言 花子<small>副院長</small></h4><p class="sp">専門：恋愛・人間関係</p><ul><li>告白成功率 50%（する or しない）</li><li>縁切り実績 多数</li><li>「たぶん」を言った回数 0回</li></ul><q>好きなら今言いなさい。</q></div>
-      <div class="card doc"><div class="av">🧑‍⚕️</div><h4>即答 次郎<small>研修医</small></h4><p class="sp">専門：はい／いいえ</p><ul><li>平均回答時間 1秒</li><li>「考えさせてください」の使用歴 なし</li><li>研修中のはずが、すでに断定的</li></ul><q>はい！いいえ！</q></div>
-      <div class="card doc"><div class="av">🩺</div><h4>一刀<small>看護師長</small></h4><p class="sp">専門：退職・断捨離</p><ul><li>退職届の書き出し支援 数知れず</li><li>処分した物 ゴミ収集車3台分（自称）</li><li>院内の整理整頓 完璧</li></ul><q>全部捨てましょう。</q></div>
-      <div class="card doc"><div class="av">🧑‍⚕️</div><h4>白黒 つけ子<small>非常勤</small></h4><p class="sp">専門：二択の悩み</p><ul><li>グレーゾーン撲滅活動 継続中</li><li>コイン投げ的中率 50%</li><li>「どっちも」と言ったことがない</li></ul><q>右です。</q></div>
-      <div class="card doc"><div class="av">🚑</div><h4>結論 急<small>救急担当</small></h4><p class="sp">専門：今すぐ決めたい悩み</p><ul><li>到着までの時間 0秒</li><li>「明日にしましょう」の使用歴 なし</li><li>夜間・休日も出勤</li></ul><q>今すぐ。</q></div>
+      <div class="card doc"><div class="av">極</div><h4>極 論太郎<small>院長</small></h4><p class="sp">専門：決断全般</p><ul><li>極論歴 24年</li><li>判断速度 0.3秒</li><li>「迷った」と言った患者 0人（自己申告）</li></ul><q>迷うな。以上。</q></div>
+      <div class="card doc"><div class="av">断</div><h4>断言 花子<small>副院長</small></h4><p class="sp">専門：恋愛・人間関係</p><ul><li>告白成功率 50%（する or しない）</li><li>縁切り実績 多数</li><li>「たぶん」を言った回数 0回</li></ul><q>好きなら今言いなさい。</q></div>
+      <div class="card doc"><div class="av">即</div><h4>即答 次郎<small>研修医</small></h4><p class="sp">専門：はい／いいえ</p><ul><li>平均回答時間 1秒</li><li>「考えさせてください」の使用歴 なし</li><li>研修中のはずが、すでに断定的</li></ul><q>はい！いいえ！</q></div>
+      <div class="card doc"><div class="av">一</div><h4>一刀<small>看護師長</small></h4><p class="sp">専門：退職・断捨離</p><ul><li>退職届の書き出し支援 数知れず</li><li>処分した物 ゴミ収集車3台分（自称）</li><li>院内の整理整頓 完璧</li></ul><q>全部捨てましょう。</q></div>
+      <div class="card doc"><div class="av">白</div><h4>白黒 つけ子<small>非常勤</small></h4><p class="sp">専門：二択の悩み</p><ul><li>グレーゾーン撲滅活動 継続中</li><li>コイン投げ的中率 50%</li><li>「どっちも」と言ったことがない</li></ul><q>右です。</q></div>
+      <div class="card doc"><div class="av">結</div><h4>結論 急<small>救急担当</small></h4><p class="sp">専門：今すぐ決めたい悩み</p><ul><li>到着までの時間 0秒</li><li>「明日にしましょう」の使用歴 なし</li><li>夜間・休日も出勤</li></ul><q>今すぐ。</q></div>
     </div>
     <p class="note">※実績はすべて架空の自己申告です。</p>
     <h3 class="sub">特別診察医（不定期出勤）</h3>
     <p>診察を受けると、ごくまれに特別な医師が担当することがあります。出会えたらラッキーです。</p>
-    <div class="chips"><span>🐱 にゃんこ先生</span><span>🚶 通りすがりの人</span><span>👦 8歳の自称院長</span><span>🔮 占い師ドクター</span><span>🤖 ロボ医師 KYOKU-3000</span><span>🧓 関西のおっちゃん</span><span>👹 ラスボス</span><span>🥷 武士の先生</span><span class="qq">❓ ？？？</span></div>
+    <div class="chips"><span>にゃんこ先生</span><span>通りすがりの人</span><span>8歳の自称院長</span><span>占い師ドクター</span><span>ロボ医師 KYOKU-3000</span><span>関西のおっちゃん</span><span>ラスボス</span><span>武士の先生</span><span class="qq">？？？</span></div>
     <p class="note">診察室の奥に、誰かいるようです…</p>
     <p style="text-align:center;margin-top:24px"><a class="btn" href="#consult">診察を受ける</a></p>
   </div>
@@ -331,6 +359,7 @@ body.has-z #app>*:not(.cta){zoom:var(--z,1)}
     <div class="card"><div class="stars">★★★★☆</div><p>セカンドオピニオンで答えが真逆になって、笑ってしまいました。</p><small>30代・公務員</small></div>
     <div class="card"><div class="stars">★★★★★</div><p>夜中の3時でも診てもらえて助かりました。待ち時間も1秒でした。</p><small>20代・フリーランス</small></div>
     <div class="card"><div class="stars">★★★☆☆</div><p>不思議な先生が出てきて、しばらく考え込んでいます。</p><small>50代・会社員</small></div>
+    <div class="card"><div class="stars">★★★★★</div><p><button type="button" id="ttl" class="hid">テトリス</button>が楽しかったです！</p><small>20代・会社員</small></div>
   </div>
     <p class="note">※架空の声です。個人の感想で、効果を保証するものではありません。</p>
     <p style="text-align:center;margin-top:24px"><a class="btn" href="#consult">オンライン相談を受付する</a></p>
@@ -340,6 +369,21 @@ body.has-z #app>*:not(.cta){zoom:var(--z,1)}
 </main>
 <footer>© 2026 極論クリニック（架空）／ 院長：極 論太郎　※実在の医療機関ではありません<div style="margin-bottom:6px">つらいときは <a href="tel:0120279338" style="color:#fff">よりそいホットライン 0120-279-338</a>（24時間・無料）</div><div class="credit">制作：<a href="https://x.com/royal404ex" target="_blank" rel="noopener">@royal404ex</a></div></footer>
 
+</div>
+<div id="tt" class="tt" hidden role="dialog" aria-modal="true" aria-label="テトリス" tabindex="-1">
+  <div class="tt-box">
+    <div class="tt-top"><b>TETRIS</b><button type="button" data-tt="pause">一時停止</button><button type="button" data-tt="close" aria-label="閉じる">✕</button></div>
+    <div class="tt-main">
+      <div class="tt-play"><canvas id="tt-cv" width="240" height="480"></canvas><div id="tt-msg" class="tt-msg" hidden></div></div>
+      <div class="tt-side">
+        <div>SCORE<b id="tt-sc">0</b></div><div>LINES<b id="tt-ln">0</b></div><div>LEVEL<b id="tt-lv">1</b></div>
+        <div>NEXT<canvas id="tt-nx" width="80" height="80"></canvas></div>
+        <button type="button" class="tt-re" data-tt="restart">もう一度</button>
+        <p class="tt-help">← → 移動<br>↑ Z 回転<br>↓ 落とす<br>Space 一気に<br>P 一時停止</p>
+      </div>
+    </div>
+    <div class="tt-pad"><button type="button" data-tt="left" aria-label="左">◀</button><button type="button" data-tt="right" aria-label="右">▶</button><button type="button" data-tt="rot" aria-label="回転">⟳</button><button type="button" data-tt="down" aria-label="下">▼</button><button type="button" data-tt="hard" aria-label="一気に落とす">⤓</button></div>
+  </div>
 </div>
 <script id="app-js">
 (function(){
@@ -413,10 +457,9 @@ var YA=["はい。","いいえ。","やりなさい。","やめなさい。","�
 var G=["やりましょう。","やめましょう。","気合いです。","寝てください。","頑張ってください。","諦めましょう。","それは問題ではありません。","気にしないでください。","全部やめましょう。","全部やりましょう。","逃げましょう。","戦いましょう。","明日にしましょう。","今日にしましょう。","笑いましょう。","泣きましょう。","走りましょう。","歩きましょう。","黙りましょう。","叫びましょう。","食べましょう。","忘れましょう。","諦めたら、そこで試合終了です。","悩むのをやめましょう。","とりあえず外に出ましょう。","誰かに頼りましょう。","一人でやりましょう。","お金で解決しましょう。","時間が解決します。","気のせいです。"];
 var F={money:0,work:3,love:4,human:5,health:7,other:-1};
 var CHIEF=["極 論太郎（院長）","断言 花子（副院長）","即答 次郎（研修医）","一刀（看護師長）","白黒 つけ子（非常勤）","結論 急（救急担当）"];
-var SUF=["","","","","異論は認めません。","以上です。","次の方どうぞ。","なお、責任は負いかねます。","効果には個人差があります。","これは極論です。","迷ったら、もう一度診察へ。","お大事にしないでください。"];
 var USE=["1日1回、気合いで","毎食後、考えずに","就寝前、深呼吸のあとに","今すぐ、迷わず","3日間、振り返らずに","1回5分、言い訳なしで","朝イチ、顔を洗ってから","一生、毎日","思い出した時に、即座に","週3回、全力で"];
 var SIDE=["特にありません。強いて言えば、きっぱりします。","一時的に、まわりが引くことがあります。","スッキリして、悩みを忘れることがあります。","やや自己責任が強まります。","行動力が上がりすぎることがあります。","口調が断定的になることがあります。","眠気、または急な決断が出ることがあります。","世の中が白か黒に見えることがあります。"];
-var CARE=/死に?たい|消えたい|自殺|自傷|リスカ|生きて(い)?たくない|殺したい|虐待|DV|暴力を受|性被害|レイプ|いなくなりたい|終わりにしたい|オーバードーズ|OD/i;
+var CARE=/死に?たい|消えたい|自殺|自傷|リスカ|生きて(い)?たくない|殺したい|虐待|暴力を受|性被害|レイプ|いなくなりたい|人生を終わりにしたい|全部終わりにしたい|オーバードーズ|(^|[^a-z])(od|dv)($|[^a-z])/i;
 function pick(a){return a[Math.floor(Math.random()*a.length)]}
 var f=document.getElementById("f"),btn=document.getElementById("go"),rx=document.getElementById("rx"),care=document.getElementById("care"),again=document.getElementById("again"),share=document.getElementById("share");
 var last="";
@@ -500,7 +543,6 @@ C.push(
 );
 G=G.concat(["すぐ動きましょう。","動いてから考えましょう。","全部、気のせいです。","笑えば解決します。","お風呂に入りましょう。","外の空気を吸いましょう。","深呼吸を3回しましょう。","水を飲みましょう。","コーヒーを淹れましょう。","お茶にしましょう。","好きなものを食べましょう。","好きな音楽を聴きましょう。","寝る前に忘れましょう。","最悪、死にはしません。","人生は、意外と何とかなります。","とりあえず1回やってみましょう。","3日間だけ、頑張ってみましょう。","1ヶ月やって、ダメなら変えましょう。","やりたいことだけやりましょう。","やりたくないことは、やめましょう。","誰かに頼りましょう。","一人で抱えないことです。","相談する相手を間違えています。","その悩みは、来週には忘れています。","答えは、もう知っているはずです。","自分を信じましょう。","自分を疑いましょう。","どちらでも大丈夫です。","やるなら全力で、やらないなら潔く。","時間をかけても、答えは変わりません。","一晩寝てから、また来てください。","手を動かしましょう。","まず片付けましょう。","メモを取りましょう。","声に出してみましょう。","散歩しましょう。話はそれからです。","今日は早く寝ましょう。","考えるより、先に歩きましょう。","遠回りも、道です。","逃げるのも、戦略です。","勝負は、今です。","諦めない人が、勝ちです。","諦める勇気も、必要です。","白黒つけましょう。","グレーでいいです。","全部、運です。","全部、努力です。","やる気は、捨てましょう。習慣にしましょう。"]);
 YA=YA.concat(["もちろんです。","全くその通りです。","絶対にやめてください。","やってください。今すぐ。","聞くだけ無駄です。","答えは決まっています。はい。","迷うまでもありません。いいえ。","七三で、はいです。","99%、いいえです。","やるなら今、やらないなら一生。"]);
-SUF=SUF.concat(["悪いことは言いません。","騙されたと思って。","信じるか信じないかは、あなた次第です。","院長の勘です。","根拠はありません。","当院調べ（調べていません）。","以上、診察を終わります。","お大事に（しないでください）。","処方箋は、ありません。","会計は、無料です。"]);
 USE=USE.concat(["起床後すぐ、迷わず","週1回、気が向いたときに","1日3回、食前に気合いを","1回につき、全力で","3日分、一気に","人前で、堂々と","鏡の前で、声に出して","夜中に、こっそりと"]);
 SIDE=SIDE.concat(["悩みが小さく見えることがあります。","突然、行動したくなることがあります。","まわりから、頼もしく見えることがあります。","極論が癖になることがあります。","何も考えなくなることがあります。","眠くなることがあります。","お腹が空くことがあります。","笑いが止まらなくなることがあります。"]);
 var WM={0:["（ゴロゴロと喉を鳴らしている）","にゃーん？","（毛づくろいを始めた）","ごはん。","（窓の外を見つめている）"],1:["お大事に。","どうも。","ちょっと、急いでるんで。","ああ、いいんじゃないですか。","さあ…。"],2:["あそぼー。","がっこういきたくない。","おなかすいた。","ぼくが院長だよ。","おかあさんにきいて。"],3:["ラッキーアイテムは、傘です。","星が味方しています。","月が欠けています。決断は来週に。","水晶玉が曇っています。","今日の運勢は、大吉です。ただし午後から。"],4:["ピポパポ。結論：やりなさい。","処理中…処理中…処理不能。","学習データにありません。寝てください。","再起動してください。","検索結果：該当なし。"],5:["そんなん自分で決めなはれ。","ええやん、ええやん。","まあ、ぼちぼちやな。","もうかりまっか。","知らんけど。"],6:["それが、お前の運命だ。","フハハハ、悩め悩め。","我が前に立つとは、愚かな。","最終形態に変身する前に帰れ。","お前の悩みは、我が糧となる。"],7:["御意。","いざ、尋常に。","拙者、決断が早いのが取り柄でござる。","天下布武でござる。","案ずるな、拙者に任せよ。"]};
@@ -545,7 +587,7 @@ function make(q,dep,nm){
  if(rr<pc)return{secret:1,name:name,dx:pick(PHIL.dx),ans:P(PHIL.a),sf:"",doc:"【SECRET】"+PHIL.n,deg:"∞",use:"一生、問い続けること",side:"世界の見え方が少し変わります。",badge:"SECRET"};
  if(rr<pc+CFG.rare/100){var w=pick(WEIRD);return{name:name,dx:pick(w.dx),ans:P(w.a),sf:"",doc:"【レア】"+w.n,deg:"★★★★★".slice(0,1+Math.floor(Math.random()*5)),use:pick(USE),side:pick(SIDE),badge:"レア医師"}}
  var r=diagnose(q,dep);
- return{name:name,dx:r.dx,ans:r.ans,sf:pick(SUF),doc:pick(CHIEF),deg:"★★★★★".slice(0,4+Math.floor(Math.random()*2)),use:pick(USE),side:pick(SIDE),badge:""};
+ return{name:name,dx:r.dx,ans:r.ans,sf:"",doc:pick(CHIEF),deg:"★★★★★".slice(0,4+Math.floor(Math.random()*2)),use:pick(USE),side:pick(SIDE),badge:""};
 }
 function render(res,q){
  document.getElementById("r-name").textContent=res.name;
@@ -567,7 +609,7 @@ function show(){
  btn.disabled=true;btn.textContent="診察中…";
  setTimeout(function(){
   btn.disabled=false;btn.textContent="診察を受ける";
-  if(CARE.test(q)){care.classList.add("show");care.scrollIntoView({behavior:"smooth",block:"center"});return}
+  if(CARE.test(q.normalize?q.normalize("NFKC"):q)){care.classList.add("show");care.scrollIntoView({behavior:"smooth",block:"center"});return}
   render(make(q,dep,nm),q);
   rx.classList.add("show");
   rx.scrollIntoView({behavior:"smooth",block:"center"});
@@ -593,10 +635,39 @@ f.addEventListener("submit",function(e){
 again.addEventListener("click",function(){show()});
 
 
+var DEPT=[
+{id:"money",sel:"money",ch:"金",name:"お金科",lead:"借金、貯金、買い物、投資。お金にまつわるお悩みを、最短距離で解決します。",targets:["借金やローンの返済が気になる","給料が足りない、貯金ができない","買い物や投資で迷っている","ギャンブルや課金がやめられない"],rx:["頑張って働いて返しましょう。","使わなければ減りません。","収入を2倍にして、支出を半分にしてください。"],doc:"極 論太郎",dch:"極",role:"院長"},
+{id:"work",sel:"work",ch:"仕",name:"仕事科",lead:"職場、転職、退職、就職活動。仕事のお悩みに、迷いのない答えをお出しします。",targets:["上司や同僚との関係に悩んでいる","残業が多い、休みが取れない","転職、退職、就職活動を迷っている","仕事のやる気が出ない"],rx:["辞めましょう。今日です。","有給は使い切るものです。使いましょう。","社長になりましょう。"],doc:"一刀",dch:"一",role:"看護師長"},
+{id:"love",sel:"love",ch:"恋",name:"恋愛科",lead:"片思いから結婚まで。気持ちの迷いに、はっきりした答えをお届けします。",targets:["片思いで、告白するか迷っている","別れるか、続けるか悩んでいる","結婚や婚活のことが気になる","相手の浮気や気持ちを疑っている"],rx:["今すぐ告白しましょう。","振られたら次です。","連絡しましょう。「今から会える？」と。"],doc:"断言 花子",dch:"断",role:"副院長"},
+{id:"human",sel:"human",ch:"人",name:"人間関係科",lead:"友人、家族、職場以外のつきあい。人との距離のお悩みを診ます。",targets:["友人やグループとの関係に疲れた","家族や親との関係に悩んでいる","嫌われているかもしれないと不安","連絡の返信や既読が気になる"],rx:["全員と縁を切りましょう。","直接言いましょう。今。","気にしないでください。以上です。"],doc:"白黒 つけ子",dch:"白",role:"非常勤"},
+{id:"health",sel:"health",ch:"健",name:"健康・食事科",lead:"運動、睡眠、食事。毎日の生活のお悩みに、はっきりした答えをお出しします。",targets:["運動や体型のことが気になる","睡眠や生活リズムが乱れている","今日の食事が決まらない","なんとなく体がだるい"],rx:["とりあえず歩きましょう。","寝てください。以上です。","本物の医者に聞いてください。ここは架空です。"],doc:"結論 急",dch:"結",role:"救急担当",note:"体の不調や痛みは、必ず本物の医療機関を受診してください。当院の回答に医学的な意味はありません。"},
+{id:"other",sel:"other",ch:"他",name:"その他",lead:"どの科にも当てはまらないお悩みは、こちらでお受けします。",targets:["勉強や受験で迷っている","趣味や習い事が続かない","将来のことが漠然と不安","右か左か、決められない"],rx:["右です。","やりましょう。","一晩寝てから、また来てください。"],doc:"即答 次郎",dch:"即",role:"研修医"}
+];
+function renderDept(t){
+ var box=document.getElementById("dept-body"),id=t.replace("dept-",""),d=null,i;
+ for(i=0;i<DEPT.length;i++){if(DEPT[i].id===id)d=DEPT[i]}
+ var steps='<h3 class="sub">診察の流れ</h3><ol class="steps"><li>お悩みを入力します</li><li>診察（約1秒）を受けます</li><li>処方箋（極論）を受け取ります</li></ol>';
+ if(!d||t==="dept"){
+  box.innerHTML='<h2>診療科目</h2><p>お悩みの種類に合わせて、6つの診療科をご用意しています。科目名を選ぶと、詳しい内容をご覧いただけます。</p><div class="dgrid">'+DEPT.map(function(x){return '<a class="card dcard" href="#dept-'+x.id+'"><span class="badge">'+x.ch+'</span><span><b>'+x.name+'</b><small>'+x.lead+'</small></span></a>'}).join("")+'</div>'+steps;
+  return;
+ }
+ box.innerHTML='<p class="crumb"><a href="#top">ホーム</a> › <a href="#dept">診療科目</a> › '+d.name+'</p><h2>'+d.name+'</h2><p>'+d.lead+'</p>'
+  +'<div class="card"><h3>こんな方におすすめです</h3><ul class="ul2">'+d.targets.map(function(x){return '<li>'+x+'</li>'}).join("")+'</ul></div>'
+  +'<div class="card"><h3>処方の例</h3>'+d.rx.map(function(x){return '<p class="rxs">'+x+'</p>'}).join("")+'<p class="note">※実際の処方は、診察のたびに変わります。</p></div>'
+  +'<div class="card docrow"><div class="av">'+d.dch+'</div><div><b>'+d.doc+'</b><small>担当医（'+d.role+'）</small></div></div>'
+  +(d.note?'<div class="warn">'+d.note+'</div>':'')
+  +steps
+  +'<p style="text-align:center;margin-top:24px"><button type="button" class="btn" data-dep="'+d.sel+'">'+d.name+'で相談する</button></p><p style="text-align:center"><a href="#dept">診療科目の一覧へ戻る</a></p>';
+}
+document.getElementById("dept-body").addEventListener("click",function(e){
+ var b=e.target.closest?e.target.closest("[data-dep]"):null;
+ if(b){document.getElementById("dep").value=b.getAttribute("data-dep");location.hash="consult"}
+});
 function route(){
- var t=(location.hash||"").replace("#",""),v=(t==="about"||t==="doctors"||t==="faq"||t==="info"||t==="voice")?t:"home";
- ["home","about","doctors","faq","info","voice"].forEach(function(n){document.getElementById("v-"+n).hidden=(n!==v)});
- Array.prototype.forEach.call(document.querySelectorAll("nav a"),function(a){var k=a.getAttribute("href").replace("#","");a.classList.toggle("on",k===t||(k==="top"&&v==="home"&&(!t||t==="top")))});
+ var t=(location.hash||"").replace("#",""),v=(t==="about"||t==="doctors"||t==="faq"||t==="info"||t==="voice")?t:(t==="dept"||t.indexOf("dept-")===0)?"dept":"home";
+ ["home","dept","about","doctors","faq","info","voice"].forEach(function(n){document.getElementById("v-"+n).hidden=(n!==v)});
+ if(v==="dept")renderDept(t);
+ Array.prototype.forEach.call(document.querySelectorAll("nav a"),function(a){var k=a.getAttribute("href").replace("#","");a.classList.toggle("on",k===(v==="dept"?"dept":t)||(k==="top"&&v==="home"&&(!t||t==="top")))});
  var el=(v==="home"&&t)?document.getElementById(t):null;
  if(el)el.scrollIntoView();else window.scrollTo(0,0);
 }
@@ -627,6 +698,88 @@ go(0);
 if(!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)){tm=setInterval(function(){go(ci+1)},5000)}
 
 (function(){var im=document.querySelectorAll("#car .slide img");var a=document.getElementById("pic-ext"),b=document.getElementById("pic-team");if(im[0]&&a)a.src=im[0].src;if(im[1]&&b)b.src=im[1].src})();
+
+(function(){
+ var ov=document.getElementById("tt"),opener=document.getElementById("ttl");
+ if(!ov||!opener)return;
+ var W=10,H=20,CS=24,cv=document.getElementById("tt-cv"),nx=document.getElementById("tt-nx"),sc=document.getElementById("tt-sc"),ln=document.getElementById("tt-ln"),lv=document.getElementById("tt-lv"),msg=document.getElementById("tt-msg");
+ var cx=cv.getContext("2d"),nc=nx.getContext("2d");
+ var SH={I:[[1,1,1,1]],O:[[1,1],[1,1]],T:[[0,1,0],[1,1,1]],S:[[0,1,1],[1,1,0]],Z:[[1,1,0],[0,1,1]],J:[[1,0,0],[1,1,1]],L:[[0,0,1],[1,1,1]]};
+ var COL={I:"#4dd0e1",O:"#ffd54f",T:"#ba68c8",S:"#81c784",Z:"#e57373",J:"#64b5f6",L:"#ffb74d"};
+ var grid,cur,next,bag=[],score=0,lines=0,level=1,over=false,paused=false,run=false,last=0,acc=0,raf=0;
+ function nb(){if(!bag.length)bag=Object.keys(SH).sort(function(){return Math.random()-.5});return bag.pop()}
+ function mk(t){return{t:t,m:SH[t].map(function(r){return r.slice()}),x:0,y:0}}
+ function rot(m){var h=m.length,w=m[0].length,r=[],i,j;for(i=0;i<w;i++){r.push([]);for(j=h-1;j>=0;j--)r[i].push(m[j][i])}return r}
+ function ok(m,x,y){for(var i=0;i<m.length;i++)for(var j=0;j<m[i].length;j++)if(m[i][j]){var a=x+j,b=y+i;if(a<0||a>=W||b>=H)return false;if(b>=0&&grid[b][a])return false}return true}
+ function ui(){sc.textContent=score;ln.textContent=lines;lv.textContent=level}
+ function cell(c,x,y,col,s){c.fillStyle=col;c.fillRect(x*s,y*s,s,s);c.strokeStyle="rgba(255,255,255,.6)";c.lineWidth=1;c.strokeRect(x*s+.5,y*s+.5,s-1,s-1)}
+ function drawNext(){nc.fillStyle="#f4faf9";nc.fillRect(0,0,80,80);var m=SH[next],s=18,ox=(80-m[0].length*s)/2,oy=(80-m.length*s)/2;m.forEach(function(r,i){r.forEach(function(v,j){if(v){nc.fillStyle=COL[next];nc.fillRect(ox+j*s,oy+i*s,s,s);nc.strokeStyle="rgba(255,255,255,.6)";nc.strokeRect(ox+j*s+.5,oy+i*s+.5,s-1,s-1)}})})}
+ function spawn(){cur=mk(next||nb());next=nb();cur.x=Math.floor((W-cur.m[0].length)/2);cur.y=0;if(!ok(cur.m,cur.x,cur.y)){over=true;msg.textContent="GAME OVER";msg.hidden=false}drawNext()}
+ function lock(){
+  cur.m.forEach(function(r,i){r.forEach(function(v,j){if(v){var b=cur.y+i,a=cur.x+j;if(b>=0)grid[b][a]=cur.t}})});
+  var n=0,y=H-1;
+  while(y>=0){if(grid[y].every(function(c){return c})){grid.splice(y,1);grid.unshift(new Array(W).fill(0));n++}else y--}
+  if(n){lines+=n;score+=[0,100,300,500,800][n]*level;level=1+Math.floor(lines/10)}
+  spawn();ui();
+ }
+ function mv(dx,dy){if(ok(cur.m,cur.x+dx,cur.y+dy)){cur.x+=dx;cur.y+=dy;return true}return false}
+ function rt(){var m=rot(cur.m),ks=[0,-1,1,-2,2];for(var i=0;i<ks.length;i++){if(ok(m,cur.x+ks[i],cur.y)){cur.m=m;cur.x+=ks[i];return}}}
+ function hard(){var n=0;while(mv(0,1))n++;score+=n*2;lock()}
+ function draw(){
+  cx.fillStyle="#f4faf9";cx.fillRect(0,0,W*CS,H*CS);
+  cx.strokeStyle="#e0eeed";cx.lineWidth=1;
+  for(var i=1;i<W;i++){cx.beginPath();cx.moveTo(i*CS+.5,0);cx.lineTo(i*CS+.5,H*CS);cx.stroke()}
+  for(i=1;i<H;i++){cx.beginPath();cx.moveTo(0,i*CS+.5);cx.lineTo(W*CS,i*CS+.5);cx.stroke()}
+  for(var y=0;y<H;y++)for(var x=0;x<W;x++)if(grid[y][x])cell(cx,x,y,COL[grid[y][x]],CS);
+  if(cur&&!over){
+   var gy=cur.y;while(ok(cur.m,cur.x,gy+1))gy++;
+   cur.m.forEach(function(r,i){r.forEach(function(v,j){if(v){cx.fillStyle="rgba(14,143,138,.18)";cx.fillRect((cur.x+j)*CS,(gy+i)*CS,CS,CS)}})});
+   cur.m.forEach(function(r,i){r.forEach(function(v,j){if(v&&cur.y+i>=0)cell(cx,cur.x+j,cur.y+i,COL[cur.t],CS)})});
+  }
+ }
+ function start(){
+  grid=[];for(var y=0;y<H;y++)grid.push(new Array(W).fill(0));
+  bag=[];next=null;score=0;lines=0;level=1;over=false;paused=false;acc=0;msg.hidden=true;
+  spawn();ui();draw();
+ }
+ function loop(t){
+  if(!run)return;raf=requestAnimationFrame(loop);
+  if(!last)last=t;var d=Math.min(t-last,200);last=t;
+  if(!paused&&!over){acc+=d;var sp=Math.max(90,800-(level-1)*70);while(acc>=sp){acc-=sp;if(!mv(0,1))lock()}}
+  draw();
+ }
+ function open(){ov.hidden=false;document.body.style.overflow="hidden";start();run=true;last=0;raf=requestAnimationFrame(loop);ov.focus()}
+ function close(){run=false;cancelAnimationFrame(raf);ov.hidden=true;document.body.style.overflow="";opener.focus()}
+ function act(n){
+  if(n==="close"){close();return}
+  if(n==="restart"){start();return}
+  if(n==="pause"){if(!over){paused=!paused;msg.textContent="PAUSE";msg.hidden=!paused}return}
+  if(over||paused||!cur)return;
+  if(n==="left")mv(-1,0);else if(n==="right")mv(1,0);else if(n==="rot")rt();
+  else if(n==="down"){if(mv(0,1))score+=1;else lock();ui()}
+  else if(n==="hard")hard();
+  draw();
+ }
+ opener.addEventListener("click",open);
+ Array.prototype.forEach.call(ov.querySelectorAll("[data-tt]"),function(b){
+  var n=b.getAttribute("data-tt"),rp=(n==="left"||n==="right"||n==="down"),t1=null,t2=null;
+  function stop(){clearTimeout(t1);clearInterval(t2);t1=t2=null}
+  b.addEventListener("mousedown",function(e){e.preventDefault()});
+  b.addEventListener("pointerdown",function(e){e.preventDefault();act(n);if(rp){stop();t1=setTimeout(function(){t2=setInterval(function(){act(n)},70)},220)}});
+  ["pointerup","pointerleave","pointercancel"].forEach(function(ev){b.addEventListener(ev,stop)});
+  b.addEventListener("click",function(e){if(e.detail===0)act(n)});
+ });
+ document.addEventListener("keydown",function(e){
+  if(ov.hidden)return;
+  var m={ArrowLeft:"left",ArrowRight:"right",ArrowUp:"rot",ArrowDown:"down"," ":"hard",Escape:"close",p:"pause",P:"pause",z:"rot",Z:"rot",x:"rot",X:"rot"};
+  var n=m[e.key];if(e.key==="Enter"&&over)n="restart";
+  if(!n)return;
+  if(e.target&&e.target.tagName==="BUTTON"&&(e.key===" "||e.key==="Enter"))return;
+  e.preventDefault();act(n);
+ });
+ ov.addEventListener("click",function(e){if(e.target===ov)close()});
+})();
+
 })();
 </script>
 </body>
